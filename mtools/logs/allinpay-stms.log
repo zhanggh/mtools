@@ -1,0 +1,21 @@
+INFO :20140720.000353:main 启动netty客户端连接 HttpNettyClient.java:50
+ERROR:20140720.000354:main 启动异常:Connection refused: no further information: /113.108.182.3:8443 HttpNettyClient.java:91
+INFO :20140720.000354:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140720.000445:main 启动netty客户端连接 HttpNettyClient.java:50
+ERROR:20140720.000446:main 启动异常:Connection refused: no further information: /113.108.182.3:8443 HttpNettyClient.java:91
+INFO :20140720.000446:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140720.000524:main 启动netty客户端连接 HttpNettyClient.java:50
+INFO :20140720.000525:main 启动netty客户端连接完成 HttpNettyClient.java:89
+INFO :20140720.000525:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140720.000525:main netty客户端发送请求完毕 HttpNettyClient.java:117
+INFO :20140720.000525:main 关闭netty客户端连接 HttpNettyClient.java:121
+INFO :20140720.000539:main 启动netty客户端连接 HttpNettyClient.java:50
+INFO :20140720.000540:main 启动netty客户端连接完成 HttpNettyClient.java:89
+INFO :20140720.000540:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140720.000540:main netty客户端发送请求完毕 HttpNettyClient.java:117
+INFO :20140720.000540:main 关闭netty客户端连接 HttpNettyClient.java:121
+INFO :20140720.000748:main 启动netty客户端连接 HttpNettyClient.java:50
+INFO :20140720.000749:main 启动netty客户端连接完成 HttpNettyClient.java:89
+INFO :20140720.000749:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140720.000749:main netty客户端发送请求完毕 HttpNettyClient.java:117
+INFO :20140720.000749:main 关闭netty客户端连接 HttpNettyClient.java:121

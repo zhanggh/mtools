@@ -1,0 +1,1 @@
+jcaptcha 验证码插件，直接配置JCaptchaFilter.java到web.xml

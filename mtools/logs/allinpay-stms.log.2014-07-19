@@ -1,0 +1,634 @@
+INFO :20140719.175327:main 服务开始启动 InitServerTest.java:17
+INFO :20140719.175327:main Loading Spring Context:file:/H:/Repositories/hmw/mtools/target/test-classes/ztools.testbeans.xml SpringUtil.java:137
+INFO :20140719.175328:main 服务结束 InitServerTest.java:26
+INFO :20140719.175449:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.175450:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.175511:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.175511:main Loading Spring Context:file:/H:/Repositories/hmw/mtools/target/classes/core-config.xml SpringUtil.java:137
+ERROR:20140719.175512:main loading spring context fail SpringUtil.java:103
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'dataSource' defined in URL [file:/H:/Repositories/hmw/mtools/target/classes/ztools.datasource.xml]: Could not resolve placeholder 'datasource.initialSize' in string value "${datasource.initialSize}"; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'datasource.initialSize' in string value "${datasource.initialSize}"
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:211)
+	at org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.processProperties(PropertyPlaceholderConfigurer.java:223)
+	at org.springframework.beans.factory.config.PropertyResourceConfigurer.postProcessBeanFactory(PropertyResourceConfigurer.java:86)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:265)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:609)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.tools.core.plugin.helper.SpringUtil.loadCxt(SpringUtil.java:89)
+	at com.tools.core.plugin.helper.SpringUtil.getCxtSync(SpringUtil.java:138)
+	at com.tools.core.plugin.helper.SpringUtil.getCxt(SpringUtil.java:114)
+	at com.tools.core.plugin.helper.SpringUtil.getAnoBean(SpringUtil.java:226)
+	at com.tools.core.plugin.netty.server.HttpNettyServer.main(HttpNettyServer.java:37)
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'datasource.initialSize' in string value "${datasource.initialSize}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:174)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.beans.factory.config.PropertyPlaceholderConfigurer$PlaceholderResolvingStringValueResolver.resolveStringValue(PropertyPlaceholderConfigurer.java:259)
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveStringValue(BeanDefinitionVisitor.java:282)
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.resolveValue(BeanDefinitionVisitor.java:204)
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitPropertyValues(BeanDefinitionVisitor.java:141)
+	at org.springframework.beans.factory.config.BeanDefinitionVisitor.visitBeanDefinition(BeanDefinitionVisitor.java:82)
+	at org.springframework.beans.factory.config.PlaceholderConfigurerSupport.doProcessProperties(PlaceholderConfigurerSupport.java:208)
+	... 13 more
+ERROR:20140719.175512:main Loading Spring Context Fail:file:/H:/Repositories/hmw/mtools/target/classes/core-config.xml SpringUtil.java:142
+INFO :20140719.180816:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.180817:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.181041:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181041:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181041:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181042:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181042:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:64
+INFO :20140719.181042:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181042:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181634:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.181635:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181642:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:64
+INFO :20140719.181642:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405765001845 HttpServerHandler.java:67
+DEBUG:20140719.181642:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:143
+DEBUG:20140719.181642:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:143
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181642:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181821:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181821:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181821:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181821:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.181822:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:58
+INFO :20140719.211700:main 服务开始启动 InitServerTest.java:17
+INFO :20140719.211700:main Loading Spring Context:file:/H:/Repositories/hmw/mtools/target/test-classes/ztools.testbeans.xml SpringUtil.java:137
+INFO :20140719.211701:main 服务结束 InitServerTest.java:30
+INFO :20140719.213119:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.213120:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213128:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.213128:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405776687955 HttpServerHandler.java:81
+INFO :20140719.213128:nioEventLoopGroup-3-1 system.property coxcmn.spring.cfg NOT Set,Using Default Spring Context appcxt.xml SpringUtil.java:130
+INFO :20140719.213128:nioEventLoopGroup-3-1 Loading Spring Context:appcxt.xml SpringUtil.java:137
+ERROR:20140719.213128:nioEventLoopGroup-3-1 loading spring context fail SpringUtil.java:100
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from file [H:\Repositories\hmw\mtools\appcxt.xml]; nested exception is java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:343)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:303)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:187)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:251)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:540)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:454)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at com.tools.core.plugin.helper.SpringUtil.loadCxt(SpringUtil.java:96)
+	at com.tools.core.plugin.helper.SpringUtil.getCxtSync(SpringUtil.java:138)
+	at com.tools.core.plugin.helper.SpringUtil.getCxt(SpringUtil.java:114)
+	at com.tools.core.plugin.helper.SpringUtil.getAnoBean(SpringUtil.java:226)
+	at com.tools.core.plugin.netty.server.HttpServerHandler.channelRead0(HttpServerHandler.java:82)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:105)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.handler.codec.MessageToMessageCodec.channelRead(MessageToMessageCodec.java:111)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:163)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:990)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:873)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:241)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:149)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:886)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:125)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:510)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:467)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:381)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:834)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at org.springframework.core.io.FileSystemResource.getInputStream(FileSystemResource.java:114)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:329)
+	... 50 more
+ERROR:20140719.213128:nioEventLoopGroup-3-1 Loading Spring Context Fail:appcxt.xml SpringUtil.java:142
+INFO :20140719.213128:nioEventLoopGroup-3-1 Loading Spring Context:appcxt.xml SpringUtil.java:137
+ERROR:20140719.213128:nioEventLoopGroup-3-1 loading spring context fail SpringUtil.java:100
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from file [H:\Repositories\hmw\mtools\appcxt.xml]; nested exception is java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:343)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:303)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:187)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:251)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:540)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:454)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at com.tools.core.plugin.helper.SpringUtil.loadCxt(SpringUtil.java:96)
+	at com.tools.core.plugin.helper.SpringUtil.getCxtSync(SpringUtil.java:138)
+	at com.tools.core.plugin.helper.SpringUtil.getCxt(SpringUtil.java:114)
+	at com.tools.core.plugin.helper.SpringUtil.getAnoBean(SpringUtil.java:226)
+	at com.tools.core.plugin.netty.server.HttpServerHandler.exceptionCaught(HttpServerHandler.java:222)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeExceptionCaughtNow(ChannelHandlerInvokerUtil.java:64)
+	at io.netty.channel.ChannelHandlerInvokerUtil.notifyHandlerException(ChannelHandlerInvokerUtil.java:219)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:85)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.handler.codec.MessageToMessageCodec.channelRead(MessageToMessageCodec.java:111)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:163)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:990)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:873)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:241)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:149)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:886)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:125)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:510)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:467)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:381)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:834)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at org.springframework.core.io.FileSystemResource.getInputStream(FileSystemResource.java:114)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:329)
+	... 51 more
+ERROR:20140719.213128:nioEventLoopGroup-3-1 Loading Spring Context Fail:appcxt.xml SpringUtil.java:142
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213128:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213301:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.213302:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.213309:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405776788367 HttpServerHandler.java:81
+INFO :20140719.213309:nioEventLoopGroup-3-1 system.property coxcmn.spring.cfg NOT Set,Using Default Spring Context appcxt.xml SpringUtil.java:130
+INFO :20140719.213309:nioEventLoopGroup-3-1 Loading Spring Context:appcxt.xml SpringUtil.java:137
+ERROR:20140719.213309:nioEventLoopGroup-3-1 loading spring context fail SpringUtil.java:100
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from file [H:\Repositories\hmw\mtools\appcxt.xml]; nested exception is java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:343)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:303)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:187)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:251)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:540)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:454)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at com.tools.core.plugin.helper.SpringUtil.loadCxt(SpringUtil.java:96)
+	at com.tools.core.plugin.helper.SpringUtil.getCxtSync(SpringUtil.java:138)
+	at com.tools.core.plugin.helper.SpringUtil.getCxt(SpringUtil.java:114)
+	at com.tools.core.plugin.helper.SpringUtil.getAnoBean(SpringUtil.java:226)
+	at com.tools.core.plugin.netty.server.HttpServerHandler.channelRead0(HttpServerHandler.java:82)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:105)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.handler.codec.MessageToMessageCodec.channelRead(MessageToMessageCodec.java:111)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:163)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:990)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:873)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:241)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:149)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:886)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:125)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:510)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:467)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:381)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:834)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at org.springframework.core.io.FileSystemResource.getInputStream(FileSystemResource.java:114)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:329)
+	... 50 more
+ERROR:20140719.213309:nioEventLoopGroup-3-1 Loading Spring Context Fail:appcxt.xml SpringUtil.java:142
+DEBUG:20140719.213309:nioEventLoopGroup-3-1 ****************发生了异常***************** HttpServerHandler.java:220
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-2 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.213309:nioEventLoopGroup-3-2 请求URI:/aipg/ProcessServlet?parameter=1405776788367 HttpServerHandler.java:81
+INFO :20140719.213309:nioEventLoopGroup-3-2 Loading Spring Context:appcxt.xml SpringUtil.java:137
+ERROR:20140719.213309:nioEventLoopGroup-3-2 loading spring context fail SpringUtil.java:100
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from file [H:\Repositories\hmw\mtools\appcxt.xml]; nested exception is java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:343)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:303)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:187)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:251)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:540)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:454)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at com.tools.core.plugin.helper.SpringUtil.loadCxt(SpringUtil.java:96)
+	at com.tools.core.plugin.helper.SpringUtil.getCxtSync(SpringUtil.java:138)
+	at com.tools.core.plugin.helper.SpringUtil.getCxt(SpringUtil.java:114)
+	at com.tools.core.plugin.helper.SpringUtil.getAnoBean(SpringUtil.java:226)
+	at com.tools.core.plugin.netty.server.HttpServerHandler.channelRead0(HttpServerHandler.java:82)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:105)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.handler.codec.MessageToMessageCodec.channelRead(MessageToMessageCodec.java:111)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:163)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:990)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:873)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:241)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:149)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:83)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:182)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:886)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:125)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:510)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:467)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:381)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:834)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: java.io.FileNotFoundException: appcxt.xml (系统找不到指定的文件。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at org.springframework.core.io.FileSystemResource.getInputStream(FileSystemResource.java:114)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:329)
+	... 50 more
+ERROR:20140719.213309:nioEventLoopGroup-3-2 Loading Spring Context Fail:appcxt.xml SpringUtil.java:142
+DEBUG:20140719.213309:nioEventLoopGroup-3-2 ****************发生了异常***************** HttpServerHandler.java:220
+INFO :20140719.213309:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213309:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213526:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.213527:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213536:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.213536:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405776935815 HttpServerHandler.java:81
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213536:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213550:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+DEBUG:20140719.213550:nioEventLoopGroup-3-1 ****************发生了异常***************** HttpServerHandler.java:221
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.213555:nioEventLoopGroup-3-2 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.213555:nioEventLoopGroup-3-2 请求URI:/aipg/ProcessServlet?parameter=1405776954987 HttpServerHandler.java:81
+INFO :20140719.213555:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214040:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.214042:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.214049:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405777248681 HttpServerHandler.java:81
+DEBUG:20140719.214049:nioEventLoopGroup-3-1 ****************发生了异常***************** HttpServerHandler.java:222
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-2 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.214049:nioEventLoopGroup-3-2 请求URI:/aipg/ProcessServlet?parameter=1405777248681 HttpServerHandler.java:81
+DEBUG:20140719.214049:nioEventLoopGroup-3-2 ****************发生了异常***************** HttpServerHandler.java:222
+INFO :20140719.214049:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214049:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214124:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.214125:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214130:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.214130:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405777289981 HttpServerHandler.java:81
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214130:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214216:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.214217:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.214224:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405777343402 HttpServerHandler.java:81
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 开始读取请求信息！ HttpServerHandler.java:78
+INFO :20140719.214224:nioEventLoopGroup-3-2 请求URI:/aipg/ProcessServlet?parameter=1405777343402 HttpServerHandler.java:81
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.214224:nioEventLoopGroup-3-2 读取请求完成! HttpServerHandler.java:72
+INFO :20140719.215239:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.215240:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215246:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:83
+INFO :20140719.215246:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405777965969 HttpServerHandler.java:86
+INFO :20140719.215246:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:180
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215246:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215410:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.215411:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215417:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:83
+INFO :20140719.215417:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405778056958 HttpServerHandler.java:86
+INFO :20140719.215417:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:180
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215417:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215628:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.215629:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215637:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:83
+INFO :20140719.215637:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405778196842 HttpServerHandler.java:86
+INFO :20140719.215637:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:180
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215637:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215706:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.215707:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215713:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:83
+INFO :20140719.215713:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405778233090 HttpServerHandler.java:86
+INFO :20140719.215713:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:180
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215713:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:77
+INFO :20140719.215837:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.215838:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.215843:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:84
+INFO :20140719.215843:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405778323266 HttpServerHandler.java:87
+INFO :20140719.215843:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:185
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.215843:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220259:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.220300:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220306:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:84
+INFO :20140719.220306:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405778585547 HttpServerHandler.java:87
+INFO :20140719.220306:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:181
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.220306:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222850:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.222851:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222855:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:84
+INFO :20140719.222855:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405780134901 HttpServerHandler.java:87
+DEBUG:20140719.222855:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:164
+INFO :20140719.222855:nioEventLoopGroup-3-1 开始读取请求httpContent信息！ HttpServerHandler.java:126
+DEBUG:20140719.222855:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:164
+INFO :20140719.222855:nioEventLoopGroup-3-1 开始读取请求LastHttpContent信息！ HttpServerHandler.java:139
+INFO :20140719.222855:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:205
+DEBUG:20140719.222855:nioEventLoopGroup-3-1 close the connection HttpServerHandler.java:154
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.222855:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223018:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.223019:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223022:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:84
+INFO :20140719.223022:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405780221804 HttpServerHandler.java:87
+INFO :20140719.223022:nioEventLoopGroup-3-1 请求getUri:/aipg/ProcessServlet?parameter=1405780221804 HttpServerHandler.java:88
+DEBUG:20140719.223022:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:165
+INFO :20140719.223022:nioEventLoopGroup-3-1 开始读取请求httpContent信息！ HttpServerHandler.java:127
+DEBUG:20140719.223022:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:165
+INFO :20140719.223022:nioEventLoopGroup-3-1 开始读取请求LastHttpContent信息！ HttpServerHandler.java:140
+INFO :20140719.223022:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:206
+DEBUG:20140719.223022:nioEventLoopGroup-3-1 close the connection HttpServerHandler.java:155
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223022:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223540:main 服务开始启动 HttpNettyServer.java:34
+INFO :20140719.223541:main Open your web browser and navigate to https://127.0.0.1:8443/ HttpNettyServer.java:60
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223546:nioEventLoopGroup-3-1 开始读取请求信息！ HttpServerHandler.java:84
+INFO :20140719.223546:nioEventLoopGroup-3-1 请求URI:/aipg/ProcessServlet?parameter=1405780545915 HttpServerHandler.java:87
+INFO :20140719.223546:nioEventLoopGroup-3-1 请求getUri:/aipg/ProcessServlet?parameter=1405780545915 HttpServerHandler.java:88
+INFO :20140719.223546:nioEventLoopGroup-3-1 开始读取请求httpContent信息！ HttpServerHandler.java:101
+INFO :20140719.223546:nioEventLoopGroup-3-1 CONTENT:  HttpServerHandler.java:106
+INFO :20140719.223546:nioEventLoopGroup-3-1 <?xml version="1.0" encoding="GBK"?><AIPG>
+  <INFO>
+    <TRX_CODE>100002</TRX_CODE>
+    <VERSION>03</VERSION>
+    <DATA_TYPE>2</DATA_TYPE>
+    <LEVEL>5</LEVEL>
+    <USER_NAME>20060400000044502</USER_NAME>
+    <USER_PASS>111111</USER_PASS>
+    <REQ_SN>200604000000445-1405780545635</REQ_SN>
+    
+  </INFO>
+  <BODY>
+    <TRANS_SUM>
+      <BUSINESS_CODE>00600</BUSINESS_CODE>
+      <MERCHANT_ID>200604000000445</MERCHANT_ID>
+      <SUBMIT_TIME></SUBMIT_TIME>
+      <TOTAL_ITEM>3</TOTAL_ITEM>
+      <TOTAL_SUM>100002</TOTAL_SUM>
+      <SETTDAY></SETTDAY>
+    </TRANS_SUM>
+    <TRANS_DETAILS>
+      <TRANS_DETAIL>
+        <SN>0001</SN>
+        <E_USER_CODE></E_USER_CODE>
+        <BANK_CODE>103</BANK_CODE>
+        <ACCOUNT_TYPE></ACCOUNT_TYPE>
+        <ACCOUNT_NO>603023061216191772</ACCOUNT_NO>
+        <ACCOUNT_NAME>����</ACCOUNT_NAME>
+        <PROVINCE></PROVINCE>
+        <CITY></CITY>
+        <BANK_NAME></BANK_NAME>
+        <ACCOUNT_PROP>0</ACCOUNT_PROP>
+        <AMOUNT>100000</AMOUNT>
+        <CURRENCY>NBK</CURRENCY>
+        <PROTOCOL></PROTOCOL>
+        <PROTOCOL_USERID></PROTOCOL_USERID>
+        <ID_TYPE></ID_TYPE>
+        <ID></ID>
+        <TEL></TEL>
+        <CUST_USERID></CUST_USERID>
+        <REMARK></REMARK>
+        <SETTACCT></SETTACCT>
+        <SETTGROUPFLAG></SETTGROUPFLAG>
+        <SUMMARY></SUMMARY>
+        <UNION_BANK></UNION_BANK>
+      </TRANS_DETAIL>
+      <TRANS_DETAIL>
+        <SN>0002</SN>
+        <E_USER_CODE></E_USER_CODE>
+        <BANK_CODE>103</BANK_CODE>
+        <ACCOUNT_TYPE></ACCOUNT_TYPE>
+        <ACCOUNT_NO>622682-0013800763464</ACCOUNT_NO>
+        <ACCOUNT_NAME>ϵͳ�ԽӲ���02</ACCOUNT_NAME>
+        <PROVINCE></PROVINCE>
+        <CITY></CITY>
+        <BANK_NAME></BANK_NAME>
+        <ACCOUNT_PROP></ACCOUNT_PROP>
+        <AMOUNT>1</AMOUNT>
+        <CURRENCY>CNY</CURRENCY>
+        <PROTOCOL></PROTOCOL>
+        <PROTOCOL_USERID></PROTOCOL_USERID>
+        <ID_TYPE></ID_TYPE>
+        <ID></ID>
+        <TEL></TEL>
+        <CUST_USERID></CUST_USERID>
+        <REMARK></REMARK>
+        <SETTACCT></SETTACCT>
+        <SETTGROUPFLAG></SETTGROUPFLAG>
+        <SUMMARY></SUMMARY>
+        <UNION_BANK>234234523523</UNION_BANK>
+      </TRANS_DETAIL>
+      <TRANS_DETAIL>
+        <SN>0003</SN>
+        <E_USER_CODE></E_USER_CODE>
+        <BANK_CODE>103</BANK_CODE>
+        <ACCOUNT_TYPE></ACCOUNT_TYPE>
+        <ACCOUNT_NO>621034-32645-1271</ACCOUNT_NO>
+        <ACCOUNT_NAME>ϵͳ�ԽӲ���03</ACCOUNT_NAME>
+        <PROVINCE></PROVINCE>
+        <CITY></CITY>
+        <BANK_NAME></BANK_NAME>
+        <ACCOUNT_PROP></ACCOUNT_PROP>
+        <AMOUNT>1</AMOUNT>
+        <CURRENCY></CURRENCY>
+        <PROTOCOL></PROTOCOL>
+        <PROTOCOL_USERID></PROTOCOL_USERID>
+        <ID_TYPE></ID_TYPE>
+        <ID></ID>
+        <TEL></TEL>
+        <CUST_USERID></CUST_USERID>
+        <REMARK></REMARK>
+        <SETTACCT></SETTACCT>
+        <SETTGROUPFLAG></SETTGROUPFLAG>
+        <SUMMARY></SUMMARY>
+        <UNION_BANK>234234523523</UNION_BANK>
+      </TRANS_DETAIL>
+    </TRANS_DETAILS>
+  </BODY>
+</AIPG> HttpServerHandler.java:107
+DEBUG:20140719.223546:nioEventLoopGroup-3-1 解码成功! HttpServerHandler.java:137
+INFO :20140719.223546:nioEventLoopGroup-3-1 开始读取请求LastHttpContent信息！ HttpServerHandler.java:112
+INFO :20140719.223546:nioEventLoopGroup-3-1 返回客户端信息 HttpServerHandler.java:178
+DEBUG:20140719.223546:nioEventLoopGroup-3-1 close the connection HttpServerHandler.java:127
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.223546:nioEventLoopGroup-3-1 读取请求完成! HttpServerHandler.java:78
+INFO :20140719.232433:main 启动netty客户端 HttpNettyClient.java:41
+INFO :20140719.232602:main 启动netty客户端 HttpNettyClient.java:41
+INFO :20140719.232659:main 启动netty客户端 HttpNettyClient.java:41
+INFO :20140719.235420:main 启动netty客户端连接 HttpNettyClient.java:50
+INFO :20140719.235421:main 启动netty客户端连接完成 HttpNettyClient.java:89
+INFO :20140719.235421:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140719.235421:main netty客户端发送请求完毕 HttpNettyClient.java:117
+INFO :20140719.235421:main 关闭netty客户端连接 HttpNettyClient.java:121
+INFO :20140719.235447:main 启动netty客户端连接 HttpNettyClient.java:50
+INFO :20140719.235448:main 启动netty客户端连接完成 HttpNettyClient.java:89
+INFO :20140719.235448:main netty客户端发送请求 HttpNettyClient.java:100
+INFO :20140719.235448:main netty客户端发送请求完毕 HttpNettyClient.java:117
+INFO :20140719.235448:main 关闭netty客户端连接 HttpNettyClient.java:121

@@ -1,0 +1,18 @@
+#OFF\u3001FATAL\u3001ERROR\u3001WARN\u3001INFO\u3001DEBUG\u3001ALL (ERROR\u3001WARN\u3001INFO\u3001DEBUG)
+log4j.rootLogger=ERROR,stdout
+log4j.logger.com=DEBUG, A1
+#log4j.category.org.springframework=INFO, A1, A2
+###### Using Console ##########
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%-5p:%d{yyyyMMdd.HHmmss}:%t %m %F:%L%n
+
+
+
+###### Using Daily File ##########
+log4j.appender.A1=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.A1.File=logs/allinpay-stms.log
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-5p\:%d{yyyyMMdd.HHmmss}\:%t %m %F\:%L%n
+
+ 

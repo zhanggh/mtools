@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+          http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/mvc 
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop.xsd
+          "
+	default-lazy-init="true">
+
+
+	<!-- 邮件配置 -->
+	<bean id="mailCfg" class="com.mtools.core.plugin.mail.MailDetailConfig">
+		<property name="smtphost" value="${smtphost}" />
+		<property name="from" value="${from}" />
+		<property name="frommail" value="${from}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${mailpwd}" />
+		<property name="subject" value="${mailsubject}" />
+		<property name="url" value="${mailurl}" />
+	</bean>
+
+	<!-- jdbc 默认lob处理器 -->
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true" />
+
+	<bean id="mailImpl" class="com.mtools.core.plugin.mail.MailImpl">
+		<property name="mailparam" ref="mailCfg" />
+	</bean>
+
+	<bean id="springUtil" class="com.mtools.core.plugin.helper.SpringUtil" />
+	<bean id="respmsg" class="com.mtools.core.plugin.entity.RespMsg">
+		<property name="code" value="1" />
+		<property name="message" value="处理成功" />
+	</bean>
+	<bean id="catalogMap" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="helper_hotqs"
+					value="H:/Repositories/通联代码/pubmisc/allinpay-techsupport/src/main/webapp/WEB-INF/jsp/helper/common/files/" />
+				<entry key="helper_hotqs"
+					value="H:/Repositories/通联代码/pubmisc/allinpay-techsupport/docs/hotsf/" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 切面 -->
+	<!-- <aop:aspectj-autoproxy /> -->
+	<!-- <bean class="com.mtools.core.aop.aspect.SampleAspect" /> -->
+	<bean id="lucencePlugin" class="com.mtools.core.plugin.lucene.LucencePlugin">
+		<property name="indexpth"
+			value="H:/迅雷下载/lucence2/Lucene视频教程_讲解部分源码/01_lucene_index/index"></property>
+	</bean>
+
+	<!-- freeMarkerConfigurer -->
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPaths" value="/WEB-INF/views/flx" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="template_update_delay">3600</prop>
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="whitespace_stripping">true</prop>
+				<prop key="classic_compatible">true</prop>
+				<prop key="number_format">0.\#\#\#\#\#\#</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH\:mm\:ss</prop>
+				<prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</prop>
+			</props>
+		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="systemName" value="${system.project_name}" />
+			</map>
+		</property>
+	</bean>
+</beans>
