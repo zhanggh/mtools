@@ -1,2 +1,3 @@
 conf目录下的文件是一些配置文件模版，
 需要复制到web工程的resources目录下使用
+其中schema.xml.template是用于solr的配置，在tomcat或者Jetty下部署好solr，把该配置文件复制到solr/collection1/conf目录下即可

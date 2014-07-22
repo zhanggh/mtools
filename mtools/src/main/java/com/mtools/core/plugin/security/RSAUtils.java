@@ -1,4 +1,4 @@
-package com.mtools.core.plugin.helper;
+package com.mtools.core.plugin.security;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
