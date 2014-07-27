@@ -4,19 +4,24 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-import com.google.common.collect.Lists;
+import com.mtools.core.plugin.entiy.vo.UserVo;
 
 
 /**
  * @author zhang 用户信息
  */
-public class UserInfo implements Serializable{
+public class UserInfo implements Serializable,Cloneable{
 
 	/**
 	 * 说明：
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -8128093648505704813L;
+	
+	public static final String TABLE_ALIAS = "stmuser";
+	public static final String TABLE_NAME = "STMUSER";
+	public static final String[] TABLE_KEYS = { "USERID" };
+	
 	private String userid;// 登陆名
 	private String username;// 真实姓名（收件人名)
 	private String password;// 登陆密码
@@ -30,8 +35,38 @@ public class UserInfo implements Serializable{
 	public String depid;//部门编号
 	private List<UserInfo> childUser;//下属
 	private Timestamp createTime;//创建时间
+	public String fromIp;
+	public String loginTime;
 	
 	
+	/**
+	 * @return the fromIp
+	 */
+	public String getFromIp() {
+		return fromIp;
+	}
+
+	/**
+	 * @param fromIp the fromIp to set
+	 */
+	public void setFromIp(String fromIp) {
+		this.fromIp = fromIp;
+	}
+
+	/**
+	 * @return the loginTime
+	 */
+	public String getLoginTime() {
+		return loginTime;
+	}
+
+	/**
+	 * @param loginTime the loginTime to set
+	 */
+	public void setLoginTime(String loginTime) {
+		this.loginTime = loginTime;
+	}
+
 	/**
 	 * @return the createTime
 	 */
@@ -162,4 +197,24 @@ public class UserInfo implements Serializable{
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
+	/**  
+	 * 功能：
+	 */
+	@Override
+	public  UserVo clone() throws CloneNotSupportedException {
+		UserVo us=new UserVo();
+		us.setUserid(this.userid);
+		us.setUsername(this.username);
+		us.setCreateTime(this.createTime);
+		us.setDepid(this.depid);
+		us.setEmail(this.email);
+		us.setMobilephone(this.mobilephone);
+		us.setPassword(this.password);
+		us.setStatus(this.status);
+		us.setType(this.type);
+		us.setWorkphone(this.workphone);
+		return us;
+	}
+	
 }

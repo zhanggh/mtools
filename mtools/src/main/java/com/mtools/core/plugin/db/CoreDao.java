@@ -9,13 +9,12 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 
 import com.mtools.core.plugin.constant.CoreConstans;
 import com.mtools.core.plugin.helper.AIPGException;
+import com.mtools.core.plugin.properties.CoreParams;
 
 //
 @SuppressWarnings("unchecked")
@@ -27,10 +26,25 @@ public class CoreDao {
 	static Log log = LogFactory.getLog(CoreDao.class);
 	public CoreDao() {
 		super();
-		DBUtil.isOrcl=false;//非Oracle数据库
 		log.info("start dao...");
 	}
 	private JdbcTemplate dbop;
+	private boolean isOrcl;
+
+	/**
+	 * @return the isOrcl
+	 */
+	public boolean getIsOrcl() {
+		return isOrcl;
+	}
+
+	/**
+	 * @param isOrcl the isOrcl to set
+	 */
+	public void setIsOrcl(String isOrcl) {
+		//false : MYSQL数据库   true ORALCE
+		this.isOrcl = Boolean.parseBoolean(isOrcl);
+	}
 
 	public JdbcTemplate getDbop() {
 		return dbop;
@@ -45,7 +59,7 @@ public class CoreDao {
 	}
 	public <T> List<T> searchSimp(Class<T> clz,int start,int size,int flag,Object startObj,Object endObj,String... ranges) throws AIPGException
 	{
-		return DBUtil.search(true, dbop, getTableNameEx(clz), start, size, flag, startObj, endObj, clz, ranges);
+		return DBUtil.search(this.isOrcl,true, dbop, getTableNameEx(clz), start, size, flag, startObj, endObj, clz, ranges);
 	}
 	public <T> long countSimp(Class<T> clz,int flag,Object startObj,Object endObj,String... ranges) throws AIPGException
 	{
@@ -53,7 +67,7 @@ public class CoreDao {
 	}
 	
 	public <T> List<T> searchPage(String sql,Class<T> clz,int start,int size,Object...args){
-		return DBUtil.getPage(dbop, sql, clz, (start-1)*size, size, args);
+		return DBUtil.getPage(this.isOrcl,dbop, sql, clz, (start-1)*size, size, args);
 	}
 	
 	public List<Object[]> searchForArray(String sql,Object...args)
@@ -62,7 +76,7 @@ public class CoreDao {
 	}
 	
 	public List<Object[]> searchForArrayPage(String sql,int start,int size,Object...args){
-		return DBUtil.getListForArrayPage(dbop, sql,start,size, args);
+		return DBUtil.getListForArrayPage(this.isOrcl,dbop, sql,start,size, args);
 	}
 	
 	public List<Map<String,Object>> searchForMap(String sql,Object...args){
@@ -70,7 +84,7 @@ public class CoreDao {
 	}
 	
 	public List<Map<String,Object>> searchForMapPage(String sql,int start,int size,Object...args){
-		return DBUtil.getListForMapPage(dbop, sql,start,size, args);
+		return DBUtil.getListForMapPage(this.isOrcl,dbop, sql,start,size, args);
 	}
 	
 	public int count(String sql,Object...args){

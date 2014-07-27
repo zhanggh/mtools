@@ -4,6 +4,7 @@ public class CoreConstans {
 
 	public static final String MTOOLS_VERSION = "1.0V";//版本号
 	public static final String RANDOMCODEKEY = "randomkey";//随机数
+	public static final String ONLINEUSERS = "onlineUsers";//在线用户
 	/**
 	 * 操作日志参数
 	 */
@@ -15,8 +16,6 @@ public class CoreConstans {
 	public static final String SUCCESSMESSAGE = "successMessage";//成功信息
 	
 	//权限类型：
-	public static final String MO = "mo";//
-	public static final String WEIXIN = "weixin";//
 	public static final String TECSP_WG = "tecsp_wg";//技术支持系统 网关系统
 	public static final String TECSP_TLT = "tecsp_tlt";//技术支持系统 账户支付系统
 	

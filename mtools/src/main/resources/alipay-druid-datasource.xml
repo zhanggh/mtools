@@ -64,8 +64,9 @@
 		<property name="dataSource" ref="aliDataSource" />
 	</bean>
 
-	<bean id="alidao" class="com.tools.core.plugin.db.CoreDao">
+	<bean id="alidao" class="com.mtools.core.plugin.db.CoreDao">
 		<property name="dbop" ref="alidbop" />
+		<property name="isOrcl" value="${db.ali.isOrcl}" />
 	</bean>
 	<!-- 事务配置 -->
 	<bean id="alitransactionManager"

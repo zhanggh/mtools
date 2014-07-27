@@ -42,7 +42,7 @@ public final class SystemListener implements HttpSessionListener, HttpSessionAtt
     public void sessionCreated(HttpSessionEvent arg0) {
     	long lastaccess = arg0.getSession().getLastAccessedTime();
     	Date date = new Date(lastaccess);
-    	log.info("last access time :"+FuncUtil.formatTime(date, "yyyy-MM-dd HH:mm:ss"));
+    	log.info("last access time :"+FuncUtil.formatTime(date, "yyyy年MM月dd日 HH时mm分ss秒 E "));
     	log.info("****************创建连接********************");
     }
 

@@ -47,7 +47,7 @@ public class MenuPlugin extends BasePlugin {
 			menus.remove(menu);
 		}
 		getPackgMenus(menus, parantMenu);
-		log.info(XStreamIg.toXml(parantMenu));
+//		log.info(XStreamIg.toXml(parantMenu));
 		return parantMenu;
 	}
 

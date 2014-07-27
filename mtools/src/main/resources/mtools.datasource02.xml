@@ -42,6 +42,7 @@
 
 	<bean id="dao" class="com.mtools.core.plugin.db.CoreDao">
 		<property name="dbop" ref="dbop" />
+		<property name="isOrcl" value="${db2.isOrcl}" />
 	</bean>
 	<!-- 事务配置 -->
 	<bean id="transactionManager"

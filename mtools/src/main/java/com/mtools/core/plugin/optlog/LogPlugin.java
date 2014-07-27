@@ -4,16 +4,18 @@
  */
 package com.mtools.core.plugin.optlog;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.auth.AuthPlugin;
 import com.mtools.core.plugin.constant.CoreConstans;
+import com.mtools.core.plugin.entity.PageInfo;
 import com.mtools.core.plugin.entity.TraceLog;
 import com.mtools.core.plugin.entity.UserInfo;
 import com.mtools.core.plugin.helper.AIPGException;
@@ -62,4 +64,33 @@ public class LogPlugin extends BasePlugin {
 			log.info(XStreamIg.toXml(tlog));
 		}
 	}
+	
+	
+	/**
+	 * 功能：操作日志查询
+	 * 2014-7-24
+	 * @param page 
+	 */
+	public List<TraceLog> traceQuery(String userid,String username,String startTime,String endTime, PageInfo page){
+		String sql = "select t.* from tracelog t where 1=1 ";
+		if(!FuncUtil.isEmpty(userid)){
+			sql+=" and loginuser = '"+userid+"'";
+		}
+		if(!FuncUtil.isEmpty(username)){
+			sql+=" and username = '"+username+"'";
+		}
+		if(!FuncUtil.isEmpty(startTime)){
+			sql+=" and opt_Time >= to_date('"+startTime+"','yyyy-MM-dd')";
+		}
+		if(!FuncUtil.isEmpty(endTime)){
+			sql+=" and opt_Time <= to_date('"+endTime+"','yyyy-MM-dd')";
+		}
+		int count = this.dao.count(sql, null);
+		page.setItemCount(count);
+		List<TraceLog> logs = this.dao.searchPage(sql, TraceLog.class,  Integer.parseInt(page.getPageIndex()), Integer.parseInt(page.getPageSize()), null);
+		return logs;
+	}
+	
+	
+	
 }

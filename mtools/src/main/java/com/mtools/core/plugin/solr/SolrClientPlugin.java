@@ -111,4 +111,38 @@ public class SolrClientPlugin<T> extends BasePlugin {
 		}
 		return sdl;
 	}
+	
+	/**
+	 * 功能：删除索引
+	 * 2014-7-18
+	 */
+	public boolean deleteIndexs(List<String> ids) throws SolrServerException, IOException{
+		log.info("删除索引");
+		server.deleteById(ids);
+		server.commit();
+		return true;
+	}
+	/**
+	 * 功能：删除索引
+	 * 2014-7-18
+	 */
+	public boolean deleteIndex(String id) throws SolrServerException, IOException{
+		log.info("删除单个索引id:"+id);
+		server.deleteById(id);
+		server.commit();
+		return true;
+	}
+
+	/**
+	 * 功能：删除所有索引
+	 * 2014-7-21
+	 * @throws IOException 
+	 * @throws SolrServerException 
+	 */
+	public void removeAll() throws SolrServerException, IOException {
+		log.info("删除全部索引");
+		server.deleteByQuery("*:*");
+		server.commit();
+		log.info("删除全部索引完成");
+	}
 }

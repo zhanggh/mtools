@@ -31,6 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+import com.mtools.core.plugin.BasePlugin;
+import com.mtools.core.plugin.helper.FuncUtil;
 import com.mtools.core.plugin.helper.SpringUtil;
 
 import freemarker.core.Environment;
@@ -46,13 +48,14 @@ import freemarker.template.utility.DeepUnwrap;
  *  功能：静态模板工具
  * @date 2014-6-24
  */
-@Service("freemarkerUtils")
-public class FreemarkerUtils {
+@Service(value="freemarkerUtils")
+public class FreemarkerUtils extends BasePlugin{
 
 	@Resource(name="freeMarkerConfigurer")
 	public FreeMarkerConfigurer freeMarkerConfigurer;
 	
 	private ServletContext servletContext;
+	public static String prefixPath;
 	
 	/**
 	 * @return the servletContext
@@ -90,7 +93,7 @@ public class FreemarkerUtils {
         StringWriter stringwriter = new StringWriter();
         try
         {
-            new Template("template", new StringReader(template), configuration).process(model, stringwriter);
+            (new Template("template", new StringReader(template), configuration)).process(model, stringwriter);
         }
         catch(TemplateException templateexception)
         {
@@ -239,11 +242,14 @@ public class FreemarkerUtils {
            {
              freemarker.template.Template template = this.freeMarkerConfigurer.getConfiguration().getTemplate(templatePath);
              File outFile = null;
-             if(this.servletContext!=null){
+             if(!FuncUtil.isEmpty(FreemarkerUtils.prefixPath)){
+                outFile = new File(FreemarkerUtils.prefixPath+staticPath); 
+             }else if(this.servletContext!=null){
             	 outFile = new File(this.servletContext.getRealPath(staticPath));
              }else{
             	 outFile = new File(staticPath); 
              }
+             log.info("静态文件路径:"+outFile.getAbsolutePath());
              File outDir = outFile.getParentFile();
              if (!outDir.exists())
             	 outDir.mkdirs();

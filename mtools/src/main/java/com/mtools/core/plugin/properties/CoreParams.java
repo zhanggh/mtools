@@ -30,8 +30,40 @@ public class CoreParams {
 	public String tranxUri;
 	@Value("${tranxUrl}")
 	public String tranxUrl;
+	@Value("${db1.isOrcl}")
+	public String isOrcl;
+	@Value("${serverName}")
+	public String serverName;
 
 	
+	/**
+	 * @return the serverName
+	 */
+	public String getServerName() {
+		return serverName;
+	}
+
+	/**
+	 * @param serverName the serverName to set
+	 */
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
+	}
+
+	/**
+	 * @return the isOrcl
+	 */
+	public boolean getIsOrcl() {
+		return Boolean.parseBoolean(isOrcl);
+	}
+
+	/**
+	 * @param isOrcl the isOrcl to set
+	 */
+	public void setIsOrcl(String isOrcl) {
+		this.isOrcl = isOrcl;
+	}
+
 	public String getTranxUrl() {
 		return tranxUrl;
 	}

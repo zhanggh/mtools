@@ -32,7 +32,6 @@ import com.mtools.core.plugin.helper.Auxs;
 @SuppressWarnings({"unchecked","rawtypes"})
 public class DBUtil
 {
-	public static boolean isOrcl=true;
 	public static int updateObjCond(boolean undercore,JdbcOperations dbop,String tab,Class clzz,Object obj,String... keys)
 	{
 		ArrayList ls=new ArrayList();
@@ -94,9 +93,9 @@ public class DBUtil
 		if(logquery) log.debug("查询列表SQL: " + sql + " 参数: " + Arrays.toString(args));
 		return dbop.query(sql, args,mp);		
 	}
-	public static List getPage(JdbcOperations dbop, String sql,Class clz,int start,int size, Object... args)
+	public static List getPage(boolean isOrcl,JdbcOperations dbop, String sql,Class clz,int start,int size, Object... args)
 	{
-		if(DBUtil.isOrcl){
+		if(isOrcl){
 			sql = "select * from (select rownum myrownum,newtable.* from ("
 				+ sql + ") newtable where rownum <= " + (start + size)
 				+ ") where myrownum > " + start;
@@ -127,8 +126,8 @@ public class DBUtil
 		return data;
 	}
 	
-	public static List<Object[]> getListForArrayPage(JdbcOperations dbop, String sql,int start,int size,Object... args){
-		if(DBUtil.isOrcl){
+	public static List<Object[]> getListForArrayPage(boolean isOrcl,JdbcOperations dbop, String sql,int start,int size,Object... args){
+		if(isOrcl){
 			sql = "select * from (select newtable.*,rownum myrownum from ("
 				+ sql + ") newtable where rownum <= " + (start + size)
 				+ ") where myrownum > " + start;
@@ -144,8 +143,8 @@ public class DBUtil
 		return dbop.queryForList(sql, args);
 	}
 	
-	public static List<Map<String,Object>> getListForMapPage(JdbcOperations dbop, String sql,int start,int size,Object... args){
-		if(DBUtil.isOrcl){
+	public static List<Map<String,Object>> getListForMapPage(boolean isOrcl,JdbcOperations dbop, String sql,int start,int size,Object... args){
+		if(isOrcl){
 			sql = "select * from (select rownum myrownum,newtable.* from ("
 				+ sql + ") newtable where rownum <= " + (start + size)
 				+ ") where myrownum > " + start;
@@ -179,11 +178,11 @@ public class DBUtil
 		if(ls.isEmpty()) return null;
 		return ls.iterator().next();
 	}
-	public static List search(boolean underscore,JdbcOperations dbop,String tab,int start,int size,int flag,Object startObj,Object endObj,Class clz,String...ranges)
+	public static List search(boolean isOrcl,boolean underscore,JdbcOperations dbop,String tab,int start,int size,int flag,Object startObj,Object endObj,Class clz,String...ranges)
 	{
 		ArrayList ls=new ArrayList();
 		String sql = createCondSqlEx(underscore,clz, startObj,endObj, ls, flag, ranges);
-		return getPage(dbop, "select * from "+tab+sql, clz, start, size, ls.toArray());
+		return getPage(isOrcl,dbop, "select * from "+tab+sql, clz, start, size, ls.toArray());
 		
 	}
 	public static long count(boolean underscore,JdbcOperations dbop,String tab,int flag,Object startObj,Object endObj,Class clz,String...ranges)

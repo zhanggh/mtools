@@ -22,8 +22,8 @@ public class AuthorityInterceptor extends BaseInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
 		String uri=request.getServletPath();
-		log.info("请求uri:"+uri);
 		log.info("**********************进入AuthorityInterceptor**********************");
+		log.info("请求uri:"+uri);
 		if("/".equals(uri))
 			return true;
 		

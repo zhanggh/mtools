@@ -44,6 +44,7 @@
 
 	<bean id="daoExt" class="com.mtools.core.plugin.db.CoreDao">
 		<property name="dbop" ref="dbopExt" />
+		<property name="isOrcl" value="${db1.isOrcl}" />
 	</bean>
 
     
