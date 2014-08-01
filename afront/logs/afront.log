@@ -1,0 +1,27 @@
+INFO :20140801.145228:main ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145623:Timer-0 ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145630:main ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145633:main start dao... CoreDao.java:29
+INFO :20140801.145700:Timer-0 ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145703:Timer-0 start dao... CoreDao.java:29
+INFO :20140801.145715:Timer-0 ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145718:Timer-0 start dao... CoreDao.java:29
+INFO :20140801.145725:Timer-0 ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145728:Timer-0 start dao... CoreDao.java:29
+INFO :20140801.145737:main ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.145741:main start dao... CoreDao.java:29
+DEBUG:20140801.145741:main Initializing filter 'JCaptchaFilter' GenericFilterBean.java:177
+DEBUG:20140801.145741:main Filter 'JCaptchaFilter' configured successfully GenericFilterBean.java:202
+INFO :20140801.145741:main 初始化spring容器 InitServlet.java:39
+INFO :20140801.145741:main SpringUtil init InitServlet.java:40
+DEBUG:20140801.145741:main 查询列表SQL: select 1 from dual 参数: null DBUtil.java:93
+INFO :20140801.150513:Timer-0 ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.150516:Timer-0 start dao... CoreDao.java:29
+INFO :20140801.150533:main ****************SystemListener******************** SystemListener.java:27
+INFO :20140801.150536:main start dao... CoreDao.java:29
+DEBUG:20140801.150536:main Initializing filter 'JCaptchaFilter' GenericFilterBean.java:177
+DEBUG:20140801.150536:main Filter 'JCaptchaFilter' configured successfully GenericFilterBean.java:202
+INFO :20140801.150537:main 初始化spring容器 InitServlet.java:39
+INFO :20140801.150537:main SpringUtil init InitServlet.java:40
+DEBUG:20140801.150537:main 查询列表SQL: select 1 from dual 参数: null DBUtil.java:93
+INFO :20140801.150537:main 加载系统参数成功 InitServlet.java:55
