@@ -11,7 +11,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-5p:%d{yyyyMMdd.HHmmss}:%t %m %F
 
 ###### Using Daily File ##########
 log4j.appender.A1=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.A1.File=logs/allinpay-stms.log
+log4j.appender.A1.File=logs/mtools.log
 log4j.appender.A1.layout=org.apache.log4j.PatternLayout
 log4j.appender.A1.layout.ConversionPattern=%-5p\:%d{yyyyMMdd.HHmmss}\:%t %m %F\:%L%n
 

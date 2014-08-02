@@ -12,28 +12,23 @@
           "
 	default-lazy-init="true">
 
-<!-- 	<bean id="mtoolsConfigurer" -->
-<!-- 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
-<!-- 		<property name="locations"> -->
-<!-- 			<list> -->
-<!-- 				<value>classpath:common.params.properties</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<!-- 开启controller注解支持 -->
 	<!-- 注意事项请参考：http://jinnianshilongnian.iteye.com/blog/1762632 -->
-	<context:component-scan base-package="com.mtools.core.plugin"
+	<context:component-scan
+		base-package="com.mtools.core.plugin.auth.web.controller"
 		use-default-filters="false">
-		<context:include-filter expression="org.springframework.stereotype.Repository"
+		<context:include-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />
-		<context:include-filter expression="org.springframework.stereotype.Component"
-			type="annotation" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
-
-
-	<import resource="mtools.datasource02.xml" />
-<!-- 	<import resource="mtools.datasource01.xml" /> -->
-	<import resource="mtools.beans.xml" />
-	<import resource="mtools.task.xml" />
-	<import resource="mtools.cache.xml" />
-
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean
+				class="com.mtools.core.plugin.spring.resolver.CustomHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	<mvc:view-controller path="/" view-name="redirect:helper/home" />
+	
+	<import resource="classpath:common-mvc.xml" />
 </beans>

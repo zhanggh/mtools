@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
 import com.mtools.core.plugin.db.CoreDao;
 import com.mtools.core.plugin.mail.MailImpl;
@@ -30,6 +31,11 @@ public class BasePlugin {
 	@Resource(name = "taskExecutor")
 	Executor executor;
 	public String errorMsg="处理失败";
+	
+	@Autowired
+	public PropertyPlaceholderConfigurer webConfigurer;
+	
+	
 	public Long getSeq(String seqName){
 		String sql="select RLPERMSEQ.Nextval from dual";
 		return this.dao.getSeq(seqName);

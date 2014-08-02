@@ -39,16 +39,7 @@
 		<property name="code" value="1" />
 		<property name="message" value="处理成功" />
 	</bean>
-	<bean id="catalogMap" class="java.util.HashMap">
-		<constructor-arg>
-			<map>
-				<entry key="helper_hotqs"
-					value="H:/Repositories/通联代码/pubmisc/allinpay-techsupport/src/main/webapp/WEB-INF/jsp/helper/common/files/" />
-				<entry key="helper_hotqs"
-					value="H:/Repositories/通联代码/pubmisc/allinpay-techsupport/docs/hotsf/" />
-			</map>
-		</constructor-arg>
-	</bean>
+
 	<!-- 切面 -->
 	<!-- <aop:aspectj-autoproxy /> -->
 	<!-- <bean class="com.mtools.core.aop.aspect.SampleAspect" /> -->
@@ -80,7 +71,7 @@
 		</property>
 		<property name="freemarkerVariables">
 			<map>
-				<entry key="systemName" value="${system.project_name}" />
+				<entry key="systemName" value="${serverName}" />
 			</map>
 		</property>
 	</bean>

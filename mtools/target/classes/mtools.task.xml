@@ -35,14 +35,14 @@
 
 	<!-- <task:annotation-driven /> -->
 
-    <context:component-scan
+<!--     <context:component-scan
 		base-package="com.mtools.core.plugin.task"
 		use-default-filters="false">
 		<context:include-filter expression="org.springframework.stereotype.Repository"
 			type="annotation" />
 		<context:include-filter expression="org.springframework.stereotype.Component"
 			type="annotation" />
-	</context:component-scan>
+	</context:component-scan> -->
 <!-- 	 <bean id="comTask" class="com.mtools.core.plugin.task.ComTaskPlugin"/>   -->
 <!-- 定时任务配置 -->
 	<task:annotation-driven scheduler="taskScheduler"/>

@@ -10,6 +10,8 @@ package com.mtools.core.plugin.properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.mtools.core.plugin.BasePlugin;
+
 /**
  * 功能：
  * 
@@ -65,6 +67,7 @@ public class CoreParams {
 	}
 
 	public String getTranxUrl() {
+		 
 		return tranxUrl;
 	}
 

@@ -25,6 +25,7 @@ import com.mtools.core.plugin.entity.PageInfo;
 import com.mtools.core.plugin.entity.TraceLog;
 import com.mtools.core.plugin.entiy.vo.DepartVo;
 import com.mtools.core.plugin.helper.FuncUtil;
+import com.mtools.core.plugin.helper.HttpTools;
 import com.mtools.core.plugin.optlog.LogPlugin;
 
 /**
@@ -170,6 +171,21 @@ public class SystemController extends BaseController {
 		 String userid, String startTime, String endTime,HttpServletRequest request){
 			
 		log.debug("清除全部缓存");
+		
+		executor.execute(new Runnable(){
+
+			public void run() {
+				String jsonString = "{\"body\":{\"cacheName\":\"all\",\"reqtime\":\"2014-07-30 17:48:26\"},\"info\":{\"leve\":\"1\",\"trxcode\":\"deleteAllCaches\"}}";
+				try {
+					jsonString = HttpTools.send(URL, jsonString);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				log.info("返回报文："+jsonString);
+			}
+			
+		});
+		
 		ehcachemagaer.getCacheManager().clearAll();
 		request.setAttribute(CoreConstans.ERROR_MESSAGE,"delete caches success!");
     	log.debug("force delete All Caches success");

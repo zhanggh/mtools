@@ -12,14 +12,6 @@
           "
 	default-lazy-init="true">
 
-<!-- 	<bean id="mtoolsConfigurer" -->
-<!-- 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
-<!-- 		<property name="locations"> -->
-<!-- 			<list> -->
-<!-- 				<value>classpath:common.params.properties</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
 	<!-- 注意事项请参考：http://jinnianshilongnian.iteye.com/blog/1762632 -->
 	<context:component-scan base-package="com.mtools.core.plugin"
 		use-default-filters="false">
@@ -31,7 +23,7 @@
 
 
 	<import resource="mtools.datasource02.xml" />
-<!-- 	<import resource="mtools.datasource01.xml" /> -->
+	<!-- <import resource="mtools.datasource01.xml" /> -->
 	<import resource="mtools.beans.xml" />
 	<import resource="mtools.task.xml" />
 	<import resource="mtools.cache.xml" />

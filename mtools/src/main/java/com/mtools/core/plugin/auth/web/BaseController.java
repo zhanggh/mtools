@@ -3,6 +3,8 @@
  * 2014-4-14
  */
 package com.mtools.core.plugin.auth.web;
+import java.util.concurrent.Executor;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,12 +44,13 @@ public abstract class BaseController {
 	public SysConfigPlugin sysPlugin;;
 	@Resource(name="coreParams")
 	public CoreParams coreParams;;
-	 
+	@Resource(name = "taskExecutor")
+	public Executor executor;
 	public PageInfo page;
 	
 	public String menuType="mo";
 	public String permType="mo";
-	
+	public static final String URL="http://127.0.0.1:8282/techsp/helperServlet";
 	public String backUri;
 	/**
 	 * 获取回话用户对象
