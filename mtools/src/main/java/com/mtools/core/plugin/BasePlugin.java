@@ -32,12 +32,25 @@ public class BasePlugin {
 	Executor executor;
 	public String errorMsg="处理失败";
 	
-	@Autowired
-	public PropertyPlaceholderConfigurer webConfigurer;
+	 
 	
-	
-	public Long getSeq(String seqName){
-		String sql="select RLPERMSEQ.Nextval from dual";
+	/**
+	 * oracle 数据库时，获取序列值的方法
+	 * @param seqName
+	 * @return
+	 */
+	public Long getSeqOrc(String seqName){
 		return this.dao.getSeq(seqName);
+	}
+	
+	/**
+	 * 
+	 * mysql 数据库时，获取序列值的方法
+	 * @param seqName
+	 * @return
+	 */
+	public String getSeqMys(String seqName){
+		String sql="select _nextval(?)";
+		return (String) this.dao.getSimpleObj(sql, String.class, seqName);
 	}
 }

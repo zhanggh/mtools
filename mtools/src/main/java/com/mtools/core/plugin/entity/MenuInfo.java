@@ -18,7 +18,7 @@ public class MenuInfo implements Serializable{
 	public static final String[] TABLE_KEYS = { "MENUID" };
 	private String menuid;
 	private String parentid;
-	private String name;
+	private String menuname;
 	private String help;
 	private String linkurl;
 	private long ordernum;
@@ -72,12 +72,14 @@ public class MenuInfo implements Serializable{
 		this.parentid = parentid;
 	}
 
-	public String getName() {
-		return name;
+	 
+
+	public String getMenuname() {
+		return menuname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMenuname(String menuname) {
+		this.menuname = menuname;
 	}
 
 	public String getHelp() {

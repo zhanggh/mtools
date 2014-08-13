@@ -1,0 +1,9 @@
+USE `goulm`;
+ 
+DROP TABLE IF EXISTS `roleperm`;
+CREATE TABLE `roleperm` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `roleid` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `permid` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11111112 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='角色权限关联表';

@@ -1,0 +1,10 @@
+USE `goulm`;
+ 
+
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `roleid` int(11) NOT NULL AUTO_INCREMENT,
+  `rolename` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`roleid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ 

@@ -1,4 +1,4 @@
--- Create table
+-- Create table department
 create table DEPARTMENT
 (
   DEPID     VARCHAR2(20),

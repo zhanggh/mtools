@@ -1,7 +1,13 @@
 package com.mtools.core.plugin.entity;
 
-public class Emailconfig {
+import java.io.Serializable;
 
+public class Emailconfig implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6843614022502187947L;
 	public static final String TABLE_ALIAS = "emailconfig";
 	public static final String TABLE_NAME = "emailconfig";
 	public static final String[] TABLE_KEYS = { "id" };

@@ -17,6 +17,10 @@ import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.Assert;
 
+/**
+ * @author 张广海
+ *  功能：
+ */
 public final class RSAUtils
 {
   private static final Provider provider = new BouncyCastleProvider();

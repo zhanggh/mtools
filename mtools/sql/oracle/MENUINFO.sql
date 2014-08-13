@@ -3,7 +3,7 @@ create table MENUINFO
 (
   MENUID   NUMBER(30) not null,
   PARENTID NUMBER(30),
-  NAME     VARCHAR2(50),
+  MENUNAME     VARCHAR2(50),
   HELP     VARCHAR2(2048),
   LINKURL  VARCHAR2(128),
   ORDERNUM NUMBER(8) default 0,
@@ -14,7 +14,7 @@ comment on column MENUINFO.MENUID
   is '菜单编号';
 comment on column MENUINFO.PARENTID
   is '父级编号';
-comment on column MENUINFO.NAME
+comment on column MENUINFO.MENUNAME
   is '菜单名称';
 comment on column MENUINFO.HELP
   is '帮助信息';

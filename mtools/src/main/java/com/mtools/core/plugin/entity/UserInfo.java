@@ -28,7 +28,7 @@ public class UserInfo implements Serializable,Cloneable{
 	private String workphone;// 工作电话
 	private String mobilephone;// 手机号码
 	private String status;// 用户状态
-	private String type;// 用户类型
+	private String usertype;// 用户类型
 	private String addr;// 收件地址
 	private String email;// 邮件
 	private String verifycode;// 验证码
@@ -182,13 +182,7 @@ public class UserInfo implements Serializable,Cloneable{
 		this.status = status;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
+	 
 
 	public String getAddr() {
 		return addr;
@@ -196,6 +190,15 @@ public class UserInfo implements Serializable,Cloneable{
 
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+
+	
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 
 	/**  
@@ -212,7 +215,7 @@ public class UserInfo implements Serializable,Cloneable{
 		us.setMobilephone(this.mobilephone);
 		us.setPassword(this.password);
 		us.setStatus(this.status);
-		us.setType(this.type);
+		us.setUsertype(this.usertype);
 		us.setWorkphone(this.workphone);
 		return us;
 	}

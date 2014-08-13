@@ -326,7 +326,7 @@ public class AuthPlugin extends BasePlugin {
 	public void addRole(Role role, String permids, ModelMap model) throws AIPGException {
 		try {
 			Roleperm rperm;
-			Long roleid=this.getSeq("RLPERMSEQ");
+			Long roleid=this.getSeqOrc("RLPERMSEQ");
 			role.setRoleid(String.valueOf(roleid));
 			this.dao.add(role);
 			if(permids==null)

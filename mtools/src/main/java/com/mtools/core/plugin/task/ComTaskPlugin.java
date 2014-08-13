@@ -38,13 +38,13 @@ public class ComTaskPlugin extends BasePlugin{
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
         log.info("定时任务："+sdf.format(date));  
     }  
-	@Scheduled(cron="0 0 1 * * ?") 
+//	@Scheduled(cron="0 0 1 * * ?") 
 //	@Scheduled(fixedDelay=16000)
 	public void doSomething(){  
 		log.info("定时任务：正在执行某些业务");  
 	}  
 	 
-	@Scheduled(cron="0 0 0 * * ?") 
+//	@Scheduled(cron="0 0 0 * * ?") 
 	public void perDayMonitor(){
 		log.info("系统每日正常运行通知!");
 		

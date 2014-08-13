@@ -81,8 +81,8 @@ public class MenuPlugin extends BasePlugin {
 	public List<MenuInfo> searchMenu(MenuInfo menu, String menutype,
 			PageInfo page) {
 		String sql = "select * from menuinfo t where t.menutype=? ";
-		if (!FuncUtil.isEmpty(menu.getName())) {
-			sql += " and t.name like '%" + menu.getName() + "%'";
+		if (!FuncUtil.isEmpty(menu.getMenuname())) {
+			sql += " and t.menuname like '%" + menu.getMenuname() + "%'";
 		}
 		if (!FuncUtil.isEmpty(menu.getMenuid())) {
 			sql += "and t.menuid = " + menu.getMenuid();
@@ -94,7 +94,7 @@ public class MenuPlugin extends BasePlugin {
 			sql += " order by menuid " + page.getSort().getId();
 		}
 		if (!FuncUtil.isEmpty(page.getSort().getName())) {
-			sql += " order by name " + page.getSort().getName();
+			sql += " order by menuname " + page.getSort().getName();
 		}
 		List<MenuInfo> menus = this.dao.searchPage(sql, MenuInfo.class,
 				Integer.parseInt(page.getPageIndex()),

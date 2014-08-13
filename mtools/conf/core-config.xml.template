@@ -22,10 +22,10 @@
 	</context:component-scan>
 
 
-	<import resource="mtools.datasource02.xml" />
-	<!-- <import resource="mtools.datasource01.xml" /> -->
-	<import resource="mtools.beans.xml" />
-	<import resource="mtools.task.xml" />
-	<import resource="mtools.cache.xml" />
+	<import resource="classpath:mtools.datasource02.xml" />
+	<!-- <import resource="classpath:mtools.datasource01.xml" /> -->
+	<import resource="classpath:mtools.beans.xml" />
+	<import resource="classpath:mtools.task.xml" />
+	<import resource="classpath:mtools.cache.xml" />
 
 </beans>
