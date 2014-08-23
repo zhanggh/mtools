@@ -8,8 +8,8 @@ public class Emailconfig implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -6843614022502187947L;
-	public static final String TABLE_ALIAS = "emailconfig";
-	public static final String TABLE_NAME = "emailconfig";
+	public static final String TABLE_ALIAS = "sys_emailconfig";
+	public static final String TABLE_NAME = "sys_emailconfig";
 	public static final String[] TABLE_KEYS = { "id" };
 	
 	private int id;// 流水号

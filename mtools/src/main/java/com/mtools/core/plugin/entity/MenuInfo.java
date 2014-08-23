@@ -13,8 +13,8 @@ public class MenuInfo implements Serializable{
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 4343797726853346163L;
-	public static final String TABLE_ALIAS = "Menuinfo";
-	public static final String TABLE_NAME = "MENUINFO";
+	public static final String TABLE_ALIAS = "menuinfo";
+	public static final String TABLE_NAME = "menuinfo";
 	public static final String[] TABLE_KEYS = { "MENUID" };
 	private String menuid;
 	private String parentid;

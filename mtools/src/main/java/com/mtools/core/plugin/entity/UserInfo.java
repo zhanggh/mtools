@@ -18,8 +18,8 @@ public class UserInfo implements Serializable,Cloneable{
 	 */
 	private static final long serialVersionUID = -8128093648505704813L;
 	
-	public static final String TABLE_ALIAS = "stmuser";
-	public static final String TABLE_NAME = "STMUSER";
+	public static final String TABLE_ALIAS = "userinfo";
+	public static final String TABLE_NAME = "userinfo";
 	public static final String[] TABLE_KEYS = { "USERID" };
 	
 	private String userid;// 登陆名

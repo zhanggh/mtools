@@ -2,7 +2,7 @@ package com.mtools.core.plugin.entity;
 
 public class UserRole {
 
-	public static final String TABLE_ALIAS = "UserRole";
+	public static final String TABLE_ALIAS = "userrole";
 	public static final String TABLE_NAME = "USERROLE";
 	public static final String[] TABLE_KEYS = { "USERID", "ROLEID" };
 

@@ -9,9 +9,9 @@ public class Role implements Serializable{
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -6328054563985222114L;
-	public static final String TABLE_ALIAS = "ROLE";
-	public static final String TABLE_NAME = "ROLE";
-	public static final String[] TABLE_KEYS = { "ROLEID" };
+	public static final String TABLE_ALIAS = "sys_role";
+	public static final String TABLE_NAME = "sys_role";
+	public static final String[] TABLE_KEYS = { "roleid" };
 
 	public String roleid;
 	public String rolename;

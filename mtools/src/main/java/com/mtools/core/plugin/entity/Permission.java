@@ -9,9 +9,9 @@ public class Permission implements Serializable{
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 7896312659244014536L;
-	public static final String TABLE_ALIAS = "Permission";
-	public static final String TABLE_NAME = "PERMISSION";
-	public static final String[] TABLE_KEYS = { "PERMID" };
+	public static final String TABLE_ALIAS = "permission";
+	public static final String TABLE_NAME = "permission";
+	public static final String[] TABLE_KEYS = { "permid" };
 	private String permid;
 	private String menuid;
 	private String permuri;

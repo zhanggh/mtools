@@ -16,8 +16,21 @@
 
 	<!-- 注意事项请参考：http://jinnianshilongnian.iteye.com/blog/1762632 -->
 
+	<bean id="webConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="localOverride" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:mtools.params.properties</value>
+				<value>classpath:mtools.default.properties</value>
+				<value>classpath:db.params.properties</value>
+				<value>classpath:web.params.properties</value>
+			</list>
+		</property>
+	</bean>
+
 	 <context:component-scan
-		base-package="com.mtools.core.plugin.entity"
+		base-package="com.mtools.core.plugin"
 		use-default-filters="false">
 		<context:include-filter expression="org.springframework.stereotype.Repository"
 			type="annotation" />
@@ -25,8 +38,8 @@
 			type="annotation" />
 	</context:component-scan>
 
-	<bean id="springUtil" class="com.mtools.core.plugin.helper.SpringUtil"/>
-	 <bean id="email" class="com.mtools.core.plugin.entity.Emailconfig">
-		<property name="toemails" value="hello@163.com" />
-	</bean>
+	<import resource="classpath:mtools.datasource02.xml"/>
+	<import resource="mtools.beans.xml" />
+	<import resource="mtools.task.xml" />
+	 
 </beans>

@@ -13,8 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.mtools.core.plugin.constant.CoreConstans;
+import com.mtools.core.plugin.entity.Sequence;
 import com.mtools.core.plugin.helper.AIPGException;
-import com.mtools.core.plugin.properties.CoreParams;
+import com.mtools.core.plugin.helper.FuncUtil;
 
 //
 @SuppressWarnings("unchecked")
@@ -298,5 +299,35 @@ public class CoreDao {
 			return clz.cast(DBUtil.findList(dbop, tableName, clz, args));
 		else
 			return null;
+	}
+	
+	/**
+	 * 
+	 * mysql 数据库时，获取序列值的方法
+	 * @param seqName
+	 * @return
+	 */
+	public String getSeqMys(String seqName){
+		String sql="select _nextval(?)";
+		String seq=null;
+		try {
+			
+			seq = (String) this.getSimpleObj("select name from tb_sequence where name=?", String.class, seqName);
+			if(FuncUtil.isEmpty(seq)){
+				Sequence sq=new Sequence();
+				sq.setName(seqName);
+				sq.set_increment(1);
+				sq.setCurrentValue(1);
+				this.add(sq);
+			}
+			seq = (String) this.getSimpleObj(sql, String.class, seqName);
+			 System.err.println(seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("获取序列异常");
+		}
+		
+		 
+		 return seq;
 	}
 }

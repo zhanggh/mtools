@@ -50,7 +50,6 @@ public class BasePlugin {
 	 * @return
 	 */
 	public String getSeqMys(String seqName){
-		String sql="select _nextval(?)";
-		return (String) this.dao.getSimpleObj(sql, String.class, seqName);
+		return this.dao.getSeqMys(seqName);
 	}
 }

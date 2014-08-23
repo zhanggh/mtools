@@ -167,7 +167,7 @@ public class DBUtil
 	public static int count(JdbcOperations dbop, String sql,Object... args)
 	{
 		
-		sql = "select count(1) from ("+sql+")";
+		sql = "select count(1) from ("+sql+") as total";
 		if(logquery) log.debug("查询列表SQL: " + sql + " 参数: " + Arrays.toString(args));
 		return (Integer)DBUtil.getSimpleObj(dbop, sql, Integer.class,args);
 	}

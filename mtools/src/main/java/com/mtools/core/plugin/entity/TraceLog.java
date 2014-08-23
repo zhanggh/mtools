@@ -13,8 +13,8 @@ import java.sql.Timestamp;
  */
 public class TraceLog {
 
-	public static final String TABLE_ALIAS = "TraceLog";
-	public static final String TABLE_NAME = "TRACELOG";
+	public static final String TABLE_ALIAS = "tracelog";
+	public static final String TABLE_NAME = "tracelog";
 	public static final String[] TABLE_KEYS = { "optid" };
 
 	private String optid;// 操作编号

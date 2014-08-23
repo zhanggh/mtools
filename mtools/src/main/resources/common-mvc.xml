@@ -15,35 +15,25 @@
 	<!-- 当在web.xml 中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
 	<mvc:default-servlet-handler />
 	<!-- 静态资源映射 -->
-	<mvc:resources mapping="/assets/**" location="/WEB-INF/assets/" />
-	<mvc:resources mapping="/jsp/upload/**" location="/jsp/upload/" />
-	<mvc:resources mapping="/admin/dialogs/**" location="/admin/dialogs/" />
-
+	<mvc:resources mapping="/common/**" location="/common/" />
+	<mvc:resources mapping="/webjs/**" location="/webjs/" />
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/static/**" />
-			<mvc:exclude-mapping path="/jsp/upload/**" />
 			<bean id="sessionInterceptor" class="com.mtools.core.plugin.web.interceptor.SessionInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/static/**" />
-			<mvc:exclude-mapping path="/jsp/upload/**" />
 			<bean id="authInterceptor" class="com.mtools.core.plugin.web.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/static/**" />
-			<mvc:exclude-mapping path="/jsp/upload/**" />
 			<bean id="logInterceptor" class="com.mtools.core.plugin.web.interceptor.LogInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/login*" />
-			<mvc:mapping path="/index*" />
-			<mvc:exclude-mapping path="/jsp/upload/**" />
+			<mvc:mapping path="/**" />
 			<bean id="tokenInterceptor" class="com.mtools.core.plugin.web.interceptor.TokenInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
