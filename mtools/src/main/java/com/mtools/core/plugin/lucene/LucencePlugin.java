@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -38,26 +40,29 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.util.Version;
+import org.springframework.stereotype.Component;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.google.common.collect.Lists;
 import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.entity.PageInfo;
+import com.mtools.core.plugin.properties.CoreParams;
 
 /**
  * 功能：全文搜索工具
  * 
  * @date 2014-5-20
  */
+@Component("lucencePlugin")
 public class LucencePlugin extends BasePlugin {
 	private static Directory directory = null;
 	private Map<String, Float> scores = new HashMap<String, Float>();
 	private Analyzer anal = new IKAnalyzer(true);//中文分词
 	private String indexpth;
 	private static IndexReader reader=null;
+	 
 	public LucencePlugin() {
 		super();
-		
 	}
 
 	/**
@@ -95,6 +100,7 @@ public class LucencePlugin extends BasePlugin {
 	public void initDirectory() {
 		log.info("初始化全文搜索目录环境FSDirectory");
 		try {
+			this.indexpth=this.coreParams.getIndexpth();
 			directory = FSDirectory.open(new File(this.getIndexpth()));
 			log.info("初始化全文搜索目录环境FSDirectory完毕");
 			// directory = new RAMDirectory();

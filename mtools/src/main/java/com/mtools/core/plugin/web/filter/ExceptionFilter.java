@@ -60,7 +60,7 @@ public class ExceptionFilter implements Filter {
 			}else if(!(e.getCause()  instanceof SocketException)){//如果catch到的异常不属于AIPGException类型的，将发送邮件通知
 				if(notify==null)
 					notify= (AsyncNotify) SpringUtil.getAnoBean("sysRunningNotify");
-				notify.initData(request, e,"");
+				notify.initData(request, e,SpringUtil.getApplicationContext().getApplicationName());
 				if(taskExecutor==null)
 					taskExecutor=(TaskExecutor) SpringUtil.getAnoBean("taskExecutor");
 				taskExecutor.execute(notify);

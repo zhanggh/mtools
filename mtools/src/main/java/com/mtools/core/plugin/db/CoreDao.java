@@ -1,30 +1,34 @@
 package com.mtools.core.plugin.db;
  
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.mtools.core.plugin.constant.CoreConstans;
-import com.mtools.core.plugin.entity.Sequence;
-import com.mtools.core.plugin.helper.AIPGException;
-import com.mtools.core.plugin.helper.FuncUtil;
+import com.mtools.core.plugin.helper.SpringUtil;
+import com.mtools.core.plugin.notify.AsyncNotify;
 
 //
 @SuppressWarnings("unchecked")
 
  
 public class CoreDao {
-	private static Map tableNameMap = new HashMap();
-	private static Map tableKeysMap = new HashMap();
-	static Log log = LogFactory.getLog(CoreDao.class);
+
+	static Log log=LogFactory.getLog(CoreDao.class);
+	@Resource(name="sysRunningNotify")
+	private AsyncNotify notify;
+	@Resource(name = "taskExecutor")
+	public Executor executor;
+	
 	public CoreDao() {
 		super();
 		log.info("start dao...");
@@ -55,49 +59,148 @@ public class CoreDao {
 		this.dbop = dbop;
 	}
 	
-	public <T> List<T> search(String sql,Class<T> clz,Object...args){
-		return DBUtil.getList(dbop, sql, clz, args);
+	public <T> List<T> search(String sql,Class<T> clz,Object...args) throws Exception{
+		try {
+			return DBUtil.getList(dbop, sql, clz, args);
+		} catch (Exception e) {
+			 if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
-	public <T> List<T> searchSimp(Class<T> clz,int start,int size,int flag,Object startObj,Object endObj,String... ranges) throws AIPGException
+	public <T> List<T> searchSimp(Class<T> clz,int start,int size,int flag,Object startObj,Object endObj,String... ranges) throws Exception
 	{
-		return DBUtil.search(this.isOrcl,true, dbop, getTableNameEx(clz), start, size, flag, startObj, endObj, clz, ranges);
+		try {
+			return DBUtil.search(this.isOrcl,true, dbop, DBUtil.getTableNameEx(clz), start, size, flag, startObj, endObj, clz, ranges);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
-	public <T> long countSimp(Class<T> clz,int flag,Object startObj,Object endObj,String... ranges) throws AIPGException
+	public <T> long countSimp(Class<T> clz,int flag,Object startObj,Object endObj,String... ranges) throws Exception
 	{
-		return DBUtil.count(true, dbop, getTableNameEx(clz), flag, startObj, endObj, clz, ranges);
+		try {
+			return DBUtil.count(true, dbop, DBUtil.getTableNameEx(clz), flag, startObj, endObj, clz, ranges);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public <T> List<T> searchPage(String sql,Class<T> clz,int start,int size,Object...args){
-		return DBUtil.getPage(this.isOrcl,dbop, sql, clz, (start-1)*size, size, args);
+	public <T> List<T> searchPage(String sql,Class<T> clz,int start,int size,Object...args) throws Exception{
+		try {
+			return DBUtil.getPage(this.isOrcl,dbop, sql, clz, (start-1)*size, size, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public List<Object[]> searchForArray(String sql,Object...args)
+	public List<Object[]> searchForArray(String sql,Object...args) throws Exception
 	{
-		return DBUtil.getListForArray(dbop, sql, args);
+		try {
+			return DBUtil.getListForArray(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public List<Object[]> searchForArrayPage(String sql,int start,int size,Object...args){
-		return DBUtil.getListForArrayPage(this.isOrcl,dbop, sql,start,size, args);
+	public List<Object[]> searchForArrayPage(String sql,int start,int size,Object...args) throws Exception{
+		try {
+			return DBUtil.getListForArrayPage(this.isOrcl,dbop, sql,start,size, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public List<Map<String,Object>> searchForMap(String sql,Object...args){
-		return DBUtil.getListForMap(dbop, sql, args);
+	public List<Map<String,Object>> searchForMap(String sql,Object...args) throws Exception{
+		try {
+			return DBUtil.getListForMap(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public List<Map<String,Object>> searchForMapPage(String sql,int start,int size,Object...args){
-		return DBUtil.getListForMapPage(this.isOrcl,dbop, sql,start,size, args);
+	public List<Map<String,Object>> searchForMapPage(String sql,int start,int size,Object...args) throws Exception{
+		try {
+			return DBUtil.getListForMapPage(this.isOrcl,dbop, sql,start,size, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public int count(String sql,Object...args){
-		return DBUtil.count(dbop, sql, args);
+	public int count(String sql,Object...args) throws Exception{
+		try {
+			return DBUtil.count(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public Object getObj(String sql,Class clz,Object...args){
-		return DBUtil.getObj(dbop, sql, clz, args);
+	public Object getObj(String sql,Class clz,Object...args) throws Exception{
+		try {
+			return DBUtil.getObj(dbop, sql, clz, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
-	public Object getSimpleObj(String sql,Class clz,Object...args){
-		return DBUtil.getSimpleObj(dbop, sql, clz, args);
+	public Object getSimpleObj(String sql,Class clz,Object...args) throws Exception{
+		try {
+			return DBUtil.getSimpleObj(dbop, sql, clz, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
 	public Long getSeq(String seqname){
@@ -106,228 +209,230 @@ public class CoreDao {
 	public String getSeqStr(String seqname){
 		return DBUtil.getSeq(dbop, seqname);
 	}
-	public String getTableName(Object obj) throws AIPGException
-	{
-		if(obj==null) return null;
-		return getTableNameEx(obj.getClass());
-	}
-	public String getTableNameEx(Class clz) throws AIPGException
-	{
-		if(CoreDao.tableNameMap.containsKey(clz))
-			return (String)CoreDao.tableNameMap.get(clz);
-		else{
-			try{
-				Field tnField = clz.getDeclaredField("TABLE_NAME");
-				String name = tnField.get(clz).toString();
-				tableNameMap.put(clz, name);
-				return name;
-			}
-			catch(NoSuchFieldException ex){
-				log.error("找不到对象的pojo类的表名属性:"+clz.getName(),ex);
-				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "找不到对象的pojo类的表名属性:"+clz.getName());
-			}
-			catch(IllegalAccessException ex){
-				log.error("无法获取对象的pojo类的表名属性:"+clz.getName(),ex);
-				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "无法获取对象的pojo类的表名属性:"+clz.getName());
-			}
-		}
-		return null;
-	}
-	
-	public String getTableName(Class c){
-		if(c==null)
-			return null;
-		if(CoreDao.tableNameMap.containsKey(c))
-			return (String)CoreDao.tableNameMap.get(c);
-		else{
-			try{
-				Field tnField = c.getDeclaredField("TABLE_NAME");
-				String name = tnField.get(null).toString();
-				tableNameMap.put(c, name);
-				return name;
-			}
-			catch(NoSuchFieldException ex){
-				log.error("找不到对象的pojo类的表名属性:"+c.getClass().getName(),ex);
-				return null;
-			}
-			catch(IllegalAccessException ex){
-				log.error("无法获取对象的pojo类的表名属性:"+c.getClass().getName(),ex);
-				return null;
-			}
-		}
-	}
-	
-	public String getDataKeys(Object obj){
-		if(obj==null)
-			return null;
-		try{
-			Method method = obj.getClass().getDeclaredMethod("toDataKeys");
-			return (String)method.invoke(obj);
-		}
-		catch(NoSuchMethodException ex){
-			log.error("找不到对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
-			return null;
-		}
-		catch(InvocationTargetException ex){
-			log.error("找不到对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
-			return null;
-		}
-		catch(IllegalAccessException ex){
-			log.error("无法获取对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
-			return null;
-		}
-	}	
-	
-	public String[] getTableKeys(Object obj){
-		if(obj==null)
-			return null;
-		if(CoreDao.tableKeysMap.containsKey(obj.getClass()))
-			return (String[])CoreDao.tableKeysMap.get(obj.getClass());
-		else{
-			try{
-				Field tnField = obj.getClass().getDeclaredField("TABLE_KEYS");
-				String[] keys = (String[])tnField.get(obj);
-				if(keys!=null&&keys.length>0)
-					tableKeysMap.put(obj.getClass(), keys);
-				return keys;
-			}
-			catch(NoSuchFieldException ex){
-				log.error("找不到对象的pojo类的表名属性:"+obj.getClass().getName(),ex);
-				return null;
-			}
-			catch(IllegalAccessException ex){
-				log.error("无法获取对象的pojo类的表名属性:"+obj.getClass().getName(),ex);
-				return null;
-			}
-		}
-	}
-	
-	public int add(Object obj) throws AIPGException{
-		String tableName = getTableName(obj);
-		if(tableName!=null)
-			return DBUtil.insertObj(true,dbop, tableName, obj);
-		else
-			return 0;
-	}
-	
-	public int add(String sql,Object args){
-		return DBUtil.updateEx(dbop, sql, args);
-	}
-	
-	public KeyHolder add(Object obj,String...retCols) throws AIPGException{
-		String tableName = getTableName(obj);
-		if(tableName!=null)
-			return DBUtil.insertObj(true,dbop, tableName, obj, retCols);
-		else
-			return null;
-	}
 
-	public int[] addBatch(Object...objects) throws AIPGException{
-		String tableName = null;
-		if(objects==null||objects.length==0)
-			return null;
-		else
-			tableName = getTableName(objects[0]);
-		if(tableName!=null)
-			return DBUtil.insertObjs(true,dbop.getDataSource(), tableName, objects);
-		else
-			return null;
-	}
 	
-	public int update(Object obj) throws AIPGException{
-		String tableName = getTableName(obj);
-		if(tableName!=null)
-			return DBUtil.updateObjFull(true,dbop, tableName, obj.getClass(), obj, getTableKeys(obj));
-		else
-			return 0;
-	}
-	
-	public int update(Object obj,int flag) throws AIPGException{
-		String tableName = getTableName(obj);
-		if(tableName!=null)
-			return DBUtil.updateObj(true, dbop, tableName, obj.getClass(), obj, flag, getTableKeys(obj));
-		else
-			return 0;
-	}
-	
-	public int[] updateBatch(String sql,Object[]... params){
-		return DBUtil.updateBatch(dbop,sql, params);
-	}
-	
-	public KeyHolder update(final String sql,final Object[] args,final String[] retCols){
-		return DBUtil.update(dbop, sql, args, retCols);
-	}
-	
-	public int update(String sql,Object...args){
-		return DBUtil.updateEx(dbop, sql, args);
-	}
-
-	public int delete(String sql,Object...args){
-		return DBUtil.delete(dbop, sql, args);
-	}
-	
-	public int delete(Object obj) throws AIPGException{
-		String tableName = getTableName(obj);
-		if(tableName!=null)
-			return DBUtil.deleteObj(true,dbop, tableName, obj, getTableKeys(obj));
-		else
-			return 0;
-	}
-
-	public <T> T find(Object obj,Class<T> clz){
-		if(clz==null) clz=(Class<T>)obj.getClass();
-		String tableName = getTableName(clz);
-		if(tableName!=null)
-			return clz.cast(DBUtil.findObj(true,dbop, tableName, obj, clz, getTableKeys(obj)));
-		else
-			return null;
-	}
-	//args: name1,value1,name2,value2.....
-	public <T> T find(Class<T> clz,String tableName,String...args)
-	{
-		if(tableName==null) tableName = getTableName(clz);
-		if(tableName!=null)
-			return clz.cast(DBUtil.findObj(dbop, tableName, clz, args));
-		else
-			return null;
-	}
-	//args: name1,value1,name2,value2.....
-	public <T> T findList(Class<T> clz,String tableName,String...args)
-	{
-		if(tableName==null) tableName = getTableName(clz);
-		if(tableName!=null)
-			return clz.cast(DBUtil.findList(dbop, tableName, clz, args));
-		else
-			return null;
-	}
-	
-	/**
-	 * 
-	 * mysql 数据库时，获取序列值的方法
-	 * @param seqName
-	 * @return
-	 */
-	public String getSeqMys(String seqName){
-		String sql="select _nextval(?)";
-		String seq=null;
+	public int add(Object obj) throws Exception{
 		try {
-			
-			seq = (String) this.getSimpleObj("select name from tb_sequence where name=?", String.class, seqName);
-			if(FuncUtil.isEmpty(seq)){
-				Sequence sq=new Sequence();
-				sq.setName(seqName);
-				sq.set_increment(1);
-				sq.setCurrentValue(1);
-				this.add(sq);
-			}
-			seq = (String) this.getSimpleObj(sql, String.class, seqName);
-			 System.err.println(seq);
+			String tableName = DBUtil.getTableName(obj);
+			if(tableName!=null)
+				return DBUtil.insertObj(true,dbop, tableName, obj);
+			else
+				return 0;
 		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
 			e.printStackTrace();
-			log.error("获取序列异常");
+			throw e;
 		}
-		
-		 
-		 return seq;
+	}
+	
+	public int add(String sql,Object args) throws Exception{
+		try {
+			return DBUtil.updateEx(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public KeyHolder add(Object obj,String...retCols) throws Exception{
+		try {
+			String tableName = DBUtil.getTableName(obj);
+			if(tableName!=null)
+				return DBUtil.insertObj(true,dbop, tableName, obj, retCols);
+			else
+				return null;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public int[] addBatch(Object...objects) throws Exception{
+		try {
+			String tableName = null;
+			if(objects==null||objects.length==0)
+				return null;
+			else
+				tableName = DBUtil.getTableName(objects[0]);
+			if(tableName!=null)
+				return DBUtil.insertObjs(true,dbop.getDataSource(), tableName, objects);
+			else
+				return null;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int update(Object obj) throws Exception{
+		try {
+			String tableName = DBUtil.getTableName(obj);
+			if(tableName!=null)
+				return DBUtil.updateObjFull(true,dbop, tableName, obj.getClass(), obj, DBUtil.getTableKeys(obj));
+			else
+				return 0;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int update(Object obj,int flag) throws Exception{
+		try {
+			String tableName = DBUtil.getTableName(obj);
+			if(tableName!=null)
+				return DBUtil.updateObj(true, dbop, tableName, obj.getClass(), obj, flag, DBUtil.getTableKeys(obj));
+			else
+				return 0;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int[] updateBatch(String sql,Object[]... params) throws Exception{
+		try {
+			return DBUtil.updateBatch(dbop,sql, params);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public KeyHolder update(final String sql,final Object[] args,final String[] retCols) throws Exception{
+		try {
+			return DBUtil.update(dbop, sql, args, retCols);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int update(String sql,Object...args) throws Exception{
+		try {
+			return DBUtil.updateEx(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public int delete(String sql,Object...args) throws Exception{
+		try {
+			return DBUtil.delete(dbop, sql, args);
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public int delete(Object obj) throws Exception{
+		try {
+			String tableName = DBUtil.getTableName(obj);
+			if(tableName!=null)
+				return DBUtil.deleteObj(true,dbop, tableName, obj, DBUtil.getTableKeys(obj));
+			else
+				return 0;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public <T> T find(Object obj,Class<T> clz) throws Exception{
+		try {
+			if(clz==null) clz=(Class<T>)obj.getClass();
+			String tableName = DBUtil.getTableName(clz);
+			if(tableName!=null)
+				return clz.cast(DBUtil.findObj(true,dbop, tableName, obj, clz, DBUtil.getTableKeys(obj)));
+			else
+				return null;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	//args: name1,value1,name2,value2.....
+	public <T> T find(Class<T> clz,String tableName,String...args) throws Exception
+	{
+		try {
+			if(tableName==null) tableName = DBUtil.getTableName(clz);
+			if(tableName!=null)
+				return clz.cast(DBUtil.findObj(dbop, tableName, clz, args));
+			else
+				return null;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	//args: name1,value1,name2,value2.....
+	public <T> T findList(Class<T> clz,String tableName,String...args) throws Exception
+	{
+		try {
+			if(tableName==null) tableName = DBUtil.getTableName(clz);
+			if(tableName!=null)
+				return clz.cast(DBUtil.findList(dbop, tableName, clz, args));
+			else
+				return null;
+		} catch (Exception e) {
+			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
+				 executor.execute(notify);
+			 }
+			e.printStackTrace();
+			throw e;
+		}
 	}
 }

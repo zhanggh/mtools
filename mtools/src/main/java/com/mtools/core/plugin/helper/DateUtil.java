@@ -166,6 +166,19 @@ public class DateUtil {
 		return cal.getTime();
 	}
 
+	/**
+	* 根据某个日期得到前一天日期
+	* @param d
+	* @return
+	*/
+	public static Date getBeforeDate(Date d){
+		Date date = d;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH,-1);
+		date = calendar.getTime();
+		return date;
+	}
 	// day
 	/**
 	 * 功能: 返回date1与date2相差的天数

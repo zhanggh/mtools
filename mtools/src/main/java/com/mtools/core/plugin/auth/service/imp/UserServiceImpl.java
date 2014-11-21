@@ -60,7 +60,7 @@ public class UserServiceImpl extends BasePlugin implements UserService {
 	@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
 	@CacheEvict(value={"getUserVo","getUserVos","userCache"},  allEntries=true)
 	public void upateStmUser(UserInfo user, UserRole urole, ModelMap model) throws AIPGException {
-		try {
+		try { 
 			int ret = this.dao.update(user);
 			if(urole!=null){
 				String[] ids = urole.getRoleid().split(",");
@@ -114,10 +114,11 @@ public class UserServiceImpl extends BasePlugin implements UserService {
 
 	/**
 	 * 功能：
+	 * @throws Exception 
 	 */
 	
 	@Cacheable(value="getUserVo",key="#user.userid")
-	public UserVo getUserVo(UserInfo user) {
+	public UserVo getUserVo(UserInfo user) throws Exception {
 		String sql = "select u.*,d.depname from stmuser u,department d where u.userid=? and u.depid=d.depid";
 		UserVo vo = (UserVo) this.dao.getObj(sql, UserVo.class,
 				user.getUserid());
@@ -127,10 +128,11 @@ public class UserServiceImpl extends BasePlugin implements UserService {
 
 	/**
 	 * 功能：查询用户列表
+	 * @throws Exception 
 	 */
 	
 	@Cacheable(value="getUserVos",key="#user.userid+''+#user.username+''+#page.pageIndex+''+#page.pageSize")
-	public List<UserVo> getUserVos(UserVo user, PageInfo page) {
+	public List<UserVo> getUserVos(UserVo user, PageInfo page) throws Exception {
 		String sql = "select u.*,d.depname from stmuser u,department d where u.depid=d.depid";
 		if (!FuncUtil.isEmpty(user.getUserid())) {
 			sql += " and u.userid='" + user.getUserid() + "'";

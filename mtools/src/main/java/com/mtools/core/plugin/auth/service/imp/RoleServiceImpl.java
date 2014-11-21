@@ -36,9 +36,10 @@ public class RoleServiceImpl extends BasePlugin implements RoleService {
 
 	/**  
 	 * 功能：
+	 * @throws Exception 
 	 */
 	
-	public void setUserRole(UserVo user) {
+	public void setUserRole(UserVo user) throws Exception {
 		String sql="select ur.userid, r.rolename,r.roleid from userrole ur, role r where r.roleid = ur.roleid and ur.userid=?";
 		List<Role> roles=this.dao.search(sql, Role.class, user.getUserid());
 		

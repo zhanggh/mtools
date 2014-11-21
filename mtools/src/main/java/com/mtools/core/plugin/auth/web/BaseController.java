@@ -22,6 +22,7 @@ import com.mtools.core.plugin.auth.service.UserService;
 import com.mtools.core.plugin.constant.CoreConstans;
 import com.mtools.core.plugin.entity.PageInfo;
 import com.mtools.core.plugin.entity.UserInfo;
+import com.mtools.core.plugin.helper.SpringUtil;
 import com.mtools.core.plugin.helper.XStreamIg;
 import com.mtools.core.plugin.properties.CoreParams;
 import com.mtools.core.plugin.sys.SysConfigPlugin;
@@ -33,7 +34,7 @@ import com.mtools.core.plugin.sys.SysConfigPlugin;
  */
 public abstract class BaseController {
 
-	public  Log log= LogFactory.getLog(this.getClass());
+	public  Log log= null;
 	@Resource(name="userService")
 	public UserService userSv;
 	@Resource(name="menuPlugin")
@@ -48,10 +49,17 @@ public abstract class BaseController {
 	public Executor executor;
 	public PageInfo page;
 	
-	public String menuType="mo";
-	public String permType="mo";
+	public String menuType;//=SpringUtil.getApplicationContext().getApplicationName().substring(1);
+	public String permType;
 	public static final String URL="http://127.0.0.1:8282/techsp/helperServlet";
 	public String backUri;
+	
+	public BaseController() {
+		super();
+		 menuType=SpringUtil.getApplicationContext().getApplicationName().substring(1);
+		 permType=SpringUtil.getApplicationContext().getApplicationName().substring(1);
+		 log=LogFactory.getLog(this.getClass());
+	}
 	/**
 	 * 获取回话用户对象
 	 * @param session
@@ -99,10 +107,20 @@ public abstract class BaseController {
 		//定义一些常用变量
 		String path = request.getContextPath();
 		String ctx = request.getScheme()+"://" + request.getServerName() + ":" + request.getServerPort() + path;
-		request.setAttribute("ctx",ctx);
+		request.setAttribute("ctx",path);
+		request.setAttribute("curOnline",currentOnline(request));
 		return ctx;
 	}
 	
+	/**
+	 * 当前在线人数
+	 * @param request
+	 * @return
+	 */
+	public String currentOnline(HttpServletRequest request){
+		int totalCount = (Integer) request.getSession().getServletContext().getAttribute(CoreConstans.ACESS_COUNT);
+		return String.valueOf(totalCount);
+	}
 	
 	public void setCommonData(Model model){} ;
 	

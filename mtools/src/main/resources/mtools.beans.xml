@@ -43,11 +43,7 @@
 	<!-- 切面 -->
 	<!-- <aop:aspectj-autoproxy /> -->
 	<!-- <bean class="com.mtools.core.aop.aspect.SampleAspect" /> -->
-	<!-- <bean id="lucencePlugin" class="com.mtools.core.plugin.lucene.LucencePlugin">
-		<property name="indexpth"
-			value="H:/迅雷下载/lucence2/Lucene视频教程_讲解部分源码/01_lucene_index/index"></property>
-	</bean> -->
-
+  
 	<!-- freeMarkerConfigurer -->
 	<bean id="freeMarkerConfigurer"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

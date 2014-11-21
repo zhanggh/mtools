@@ -23,23 +23,12 @@
 			<list>
 				<value>classpath:mtools.params.properties</value>
 				<value>classpath:mtools.default.properties</value>
-				<value>classpath:db.params.properties</value>
-				<value>classpath:web.params.properties</value>
+				<value>classpath:mtools.mq.properties</value>
 			</list>
 		</property>
 	</bean>
 
-	 <context:component-scan
-		base-package="com.mtools.core.plugin"
-		use-default-filters="false">
-		<context:include-filter expression="org.springframework.stereotype.Repository"
-			type="annotation" />
-		<context:include-filter expression="org.springframework.stereotype.Component"
-			type="annotation" />
-	</context:component-scan>
-
-	<import resource="classpath:mtools.datasource02.xml"/>
-	<import resource="mtools.beans.xml" />
-	<import resource="mtools.task.xml" />
+	<context:component-scan base-package="com.mtools.core.plugin.jms.activemq" />
+	<import resource="classpath:mtools.mq.xml"/>
 	 
 </beans>

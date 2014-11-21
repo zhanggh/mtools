@@ -50,13 +50,15 @@ public interface UserService {
 	/**
 	 * 功能：获取用户视图
 	 * 2014-4-23
+	 * @throws Exception 
 	 */
-	public UserVo getUserVo(UserInfo user);
+	public UserVo getUserVo(UserInfo user) throws Exception;
 	/**
 	 * 功能：获取用户视图
 	 * 2014-4-23
+	 * @throws Exception 
 	 */
-	public List<UserVo> getUserVos(UserVo user,PageInfo page);
+	public List<UserVo> getUserVos(UserVo user,PageInfo page) throws Exception;
 
 	/**
 	 * 功能：

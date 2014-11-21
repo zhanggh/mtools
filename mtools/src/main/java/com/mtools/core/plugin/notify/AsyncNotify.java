@@ -13,5 +13,5 @@ import javax.servlet.ServletRequest;
  */
 public interface AsyncNotify extends Runnable {
 
-	public void initData(ServletRequest request,Throwable e,String appName) throws IOException;
+	public void initData(ServletRequest request,Throwable e,String appName);
 }

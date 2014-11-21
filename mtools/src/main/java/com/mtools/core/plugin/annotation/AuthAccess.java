@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 控制类的方法上加入这个注解，该方法的访问则不需要权限控制
- * @author zhuty
+ * @author zhanggh
  *
  */
 @Target({ElementType.METHOD})

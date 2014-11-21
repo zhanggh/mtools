@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache" 
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
           http://www.springframework.org/schema/beans 
           http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/aop 
@@ -20,11 +23,10 @@
           http://www.springframework.org/schema/mvc 
           http://www.springframework.org/schema/mvc/spring-mvc.xsd
           ">
-
-
+	
+    
 	<!-- 线程池维护 -->
-	<bean id="taskExecutor"
-		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="${task.core_pool_size}" />
 		<property name="maxPoolSize" value="${task.max_pool_size}" />
 		<property name="queueCapacity" value="${task.queue_capacity}" />
@@ -33,15 +35,20 @@
 
 	<!-- <task:annotation-driven /> -->
 
-	<!-- <context:component-scan base-package="com.mtools.core.plugin.task" 
-		use-default-filters="false"> <context:include-filter expression="org.springframework.stereotype.Repository" 
-		type="annotation" /> <context:include-filter expression="org.springframework.stereotype.Component" 
-		type="annotation" /> </context:component-scan> -->
-	<!-- <bean id="comTask" class="com.mtools.core.plugin.task.ComTaskPlugin"/> -->
-	<!-- 定时任务配置 -->
-	<task:annotation-driven scheduler="taskScheduler" />
-	<task:scheduler id="taskScheduler" pool-size="42" />
-	<task:scheduled-tasks>
-		<task:scheduled ref="comTask" method="perDayMonitor" cron="0 0 1 * * ?" />
-	</task:scheduled-tasks>
+<!--     <context:component-scan
+		base-package="com.mtools.core.plugin.task"
+		use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Repository"
+			type="annotation" />
+		<context:include-filter expression="org.springframework.stereotype.Component"
+			type="annotation" />
+	</context:component-scan> -->
+<!-- 	 <bean id="comTask" class="com.mtools.core.plugin.task.ComTaskPlugin"/>   -->
+<!-- 定时任务配置 -->
+	<task:annotation-driven scheduler="taskScheduler"/>
+    <task:scheduler id="taskScheduler" pool-size="5"/>
+    <task:scheduled-tasks>   
+	  <!--   <task:scheduled ref="tranSvTask" method="doSomething" cron="0 5 * * * ?"/> -->
+	    <task:scheduled ref="comTask" method="perDayMonitor" cron="0 0 0 * * ?"/>
+	 </task:scheduled-tasks>  
 </beans>

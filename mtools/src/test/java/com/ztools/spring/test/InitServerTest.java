@@ -15,12 +15,13 @@ public class InitServerTest {
 	public static  Log log= LogFactory.getLog(InitServerTest.class);
 	public static void main(String[] args) {
 		log.info("服务开始启动");
-		SpringUtil.initSpringCfg("ztools.testbeans.xml");
-    	
-    	Emailconfig email=(Emailconfig) SpringUtil.getBean("email");
-    	SystemInfo sysInfo=(SystemInfo) SpringUtil.getAnoBean("sysInfo");
-    	System.out.println(email.getToemails());
-    	System.out.println(sysInfo.getVersion());
+		     
+//		SpringUtil.initSpringCfg("ztools.testbeans.xml");
+//    	
+//    	Emailconfig email=(Emailconfig) SpringUtil.getBean("email");
+//    	SystemInfo sysInfo=(SystemInfo) SpringUtil.getAnoBean("sysInfo");
+//    	System.out.println(email.getToemails());
+//    	System.out.println(sysInfo.getVersion());
     	System.out.println(Boolean.parseBoolean("true1"));
     	System.out.println(Boolean.parseBoolean("false"));
 //    	

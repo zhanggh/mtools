@@ -9,8 +9,12 @@ package com.mtools.core.plugin.entity;
  * 
  *         2014-4-14
  */
-public class RespMsg {
+public class RespMsg  extends BaseDbStruct{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8933955674830484187L;
 	private String code;
 	private String message;
 	private String type;

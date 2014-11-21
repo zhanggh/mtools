@@ -32,7 +32,7 @@ import com.mtools.core.plugin.helper.FuncUtil;
 public class SysConfigPlugin extends BasePlugin {
 
 	
-	public List<DepartVo> getDeps(Department dep,PageInfo page){
+	public List<DepartVo> getDeps(Department dep,PageInfo page) throws Exception{
 		String sql = "select c.*, p.depname pdepname from department c left join department p on c.parentid=p.depid where 1=1 ";
 		if (!FuncUtil.isEmpty(dep.getDepname())) {
 			sql += " and c.depname like '%" + dep.getDepname() + "%'";
@@ -123,8 +123,9 @@ public class SysConfigPlugin extends BasePlugin {
 	/**
 	 * 功能：组织信息
 	 * 2014-5-7
+	 * @throws Exception 
 	 */
-	public Map<String, String> getDepsFoMap() {
+	public Map<String, String> getDepsFoMap() throws Exception {
 		String sql = "select t.depid,t.depname from department t";
 		List<Object[]> deps = this.dao.searchForArray(sql, null);
 		Map<String, String> depsMap = Maps.newConcurrentMap();

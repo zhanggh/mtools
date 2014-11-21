@@ -18,6 +18,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mtools.core.plugin.annotation.AuthAccess;
+import com.mtools.core.plugin.annotation.AuthLogin;
 import com.mtools.core.plugin.auth.web.BaseController;
 import com.mtools.core.plugin.constant.CoreConstans;
 import com.mtools.core.plugin.entity.Department;
@@ -143,10 +145,11 @@ public class SystemController extends BaseController {
 	/**
 	 * 功能：日志跟踪
 	 * 2014-7-24
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/tracelog/query")
 	public String traceQuery(ModelMap model, HttpSession session,PageInfo page,
-		 String userid, String startTime, String endTime,HttpServletRequest request){
+		 String userid, String startTime, String endTime,HttpServletRequest request) throws Exception{
 				
 		List<TraceLog>  tracelogs = logPlugin.traceQuery(userid, "", startTime, endTime,this.page);
 		model.addAttribute("tracelogs", tracelogs);
@@ -156,10 +159,11 @@ public class SystemController extends BaseController {
 	/**
 	 * 功能：日志跟踪
 	 * 2014-7-24
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/tracelog/query", headers = "table=true")
 	public String asytraceQuery(ModelMap model, HttpSession session,PageInfo page,
-			String userid, String startTime, String endTime,HttpServletRequest request){
+			String userid, String startTime, String endTime,HttpServletRequest request) throws Exception{
 		
 		List<TraceLog>  tracelogs = logPlugin.traceQuery(userid, "", startTime, endTime,this.page);
 		model.addAttribute("tracelogs", tracelogs);
@@ -190,6 +194,18 @@ public class SystemController extends BaseController {
 		request.setAttribute(CoreConstans.ERROR_MESSAGE,"delete caches success!");
     	log.debug("force delete All Caches success");
     	return "front/msgdialog";
+	}
+	
+	/**
+	 * 转向到数据源监控页面
+	 * 
+	 * @return
+	 */
+	@AuthAccess
+	@AuthLogin
+	@RequestMapping("/dbmonitor/druid")
+	public String druid() {
+		return "redirect:/admin/monitor/druid/index.html";
 	}
 	
 }

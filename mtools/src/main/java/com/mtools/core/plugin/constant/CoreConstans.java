@@ -10,10 +10,14 @@ public class CoreConstans {
 	 */
 	public static final String ERROR_MESSAGE = "error_msg";//错误信息
 	public static final String LOGIN_COUNT = "login_count";//登陆人数
+	public static final String ACESS_COUNT = "acess_count";//访问人数
 	public static final String LOGINGUSER = "loginguser";//登陆用户
 	public static final String OPTRESULT = "opt_result";//操作结果 1成功，0失败
 	public static final String ORGPARAMS = "org_params";//原参数
 	public static final String SUCCESSMESSAGE = "successMessage";//成功信息
+	public static final String SUCCESS = "success";//成功
+	public static final String FAIL = "fail";//失败
+	 
 	
 	//权限类型：
 	public static final String TECSP_WG = "tecsp_wg";//技术支持系统 网关系统
@@ -28,12 +32,26 @@ public class CoreConstans {
 	public static final String PATH_REG = "[a-z|A-Z|0-9|\\/]*";//权限正则
 
 	/**
-	 * 异常码
+	 * 通知类型：
 	 */
 	public static final String EXCEPTON_01 = "01";//异常类型 其他错误
 	public static final String EXCEPTON_02 = "02";//异常类型 session超时或者尚未登陆
 	public static final String EXCEPTON_03 = "03";//异常类型 权限不足
+	/**
+	 * 通知类型：对账文件发送
+	 */
+	public static final String EXCEPTON_04 = "04";//通知类型：对账文件发送
 	
+	/**
+	 * 通知类型：积分对账文件发送
+	 */
+	public static final String EXCEPTON_05 = "05";//通知类型：积分对账文件发送
+	
+	
+	/**
+	 * 通知类型：检查对账文件发送
+	 */
+	public static final String EXCEPTON_06 = "06";//通知类型：检查对账文件发送
 	
 	 /**
      * 操作名称

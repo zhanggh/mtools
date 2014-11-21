@@ -16,6 +16,7 @@ import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.auth.AuthPlugin;
 import com.mtools.core.plugin.constant.CoreConstans;
 import com.mtools.core.plugin.entity.PageInfo;
+import com.mtools.core.plugin.entity.Permission;
 import com.mtools.core.plugin.entity.TraceLog;
 import com.mtools.core.plugin.entity.UserInfo;
 import com.mtools.core.plugin.helper.AIPGException;
@@ -34,9 +35,9 @@ public class LogPlugin extends BasePlugin {
 
 	/**
 	 * 功能：保存敏感操作痕迹 2014-4-14
-	 * @throws AIPGException 
+	 * @throws Exception 
 	 */
-	public void traceSave(ServletRequest request) throws AIPGException {
+	public void traceSave(ServletRequest request) throws Exception {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String path = req.getServletPath();
 		String fromIp = req.getRemoteHost();
@@ -51,13 +52,17 @@ public class LogPlugin extends BasePlugin {
 		tlog.setFromIp(fromIp);
 		tlog.setLoginuser(user.getUserid());
 		tlog.setOptUrl(path);
-		tlog.setOptName(auth.getPermName(path));
+		String optName=(String) req.getAttribute(CoreConstans.OP_NAME);
+		if(FuncUtil.isEmpty(optName)){
+			tlog.setOptName(auth.getPermName(path));
+		}else{
+			tlog.setOptName(optName);
+		}
 		tlog.setOptTime(FuncUtil.getCurrTimestamp());
 		tlog.setOptResult((String) req.getAttribute(CoreConstans.OPTRESULT));
 		tlog.setOrgParams((String) req.getAttribute(CoreConstans.ORGPARAMS));
-		if (FuncUtil.isEmpty(tlog.getOptResult())
-				&& auth.getPermByUri(path) != null
-				&& auth.getPermByUri(path).getPermlevel() > 0) {
+		Permission perm = auth.getPermByUri(path);
+		if (!FuncUtil.isEmpty(tlog.getOptResult())&& perm != null&& perm.getPermlevel() > 0) {
 			this.dao.add(tlog);
 		} else {
 			log.info("查询操作，操作日志无需入库");
@@ -70,8 +75,9 @@ public class LogPlugin extends BasePlugin {
 	 * 功能：操作日志查询
 	 * 2014-7-24
 	 * @param page 
+	 * @throws Exception 
 	 */
-	public List<TraceLog> traceQuery(String userid,String username,String startTime,String endTime, PageInfo page){
+	public List<TraceLog> traceQuery(String userid,String username,String startTime,String endTime, PageInfo page) throws Exception{
 		String sql = "select t.* from tracelog t where 1=1 ";
 		if(!FuncUtil.isEmpty(userid)){
 			sql+=" and loginuser = '"+userid+"'";

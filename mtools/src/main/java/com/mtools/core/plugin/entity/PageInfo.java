@@ -4,9 +4,6 @@
  */
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
-
-import org.springframework.beans.factory.annotation.Value;
 
 import com.mtools.core.plugin.helper.FuncUtil;
 
@@ -15,7 +12,7 @@ import com.mtools.core.plugin.helper.FuncUtil;
  *
  * 2014-4-19
  */
-public class PageInfo implements Serializable{
+public class PageInfo  extends BaseDbStruct{
 	 
 	/**
 	 * 说明：

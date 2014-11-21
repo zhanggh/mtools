@@ -1,21 +1,268 @@
-INFO :20140720.000353:main 启动netty客户端连接 HttpNettyClient.java:50
-ERROR:20140720.000354:main 启动异常:Connection refused: no further information: /113.108.182.3:8443 HttpNettyClient.java:91
-INFO :20140720.000354:main netty客户端发送请求 HttpNettyClient.java:100
-INFO :20140720.000445:main 启动netty客户端连接 HttpNettyClient.java:50
-ERROR:20140720.000446:main 启动异常:Connection refused: no further information: /113.108.182.3:8443 HttpNettyClient.java:91
-INFO :20140720.000446:main netty客户端发送请求 HttpNettyClient.java:100
-INFO :20140720.000524:main 启动netty客户端连接 HttpNettyClient.java:50
-INFO :20140720.000525:main 启动netty客户端连接完成 HttpNettyClient.java:89
-INFO :20140720.000525:main netty客户端发送请求 HttpNettyClient.java:100
-INFO :20140720.000525:main netty客户端发送请求完毕 HttpNettyClient.java:117
-INFO :20140720.000525:main 关闭netty客户端连接 HttpNettyClient.java:121
-INFO :20140720.000539:main 启动netty客户端连接 HttpNettyClient.java:50
-INFO :20140720.000540:main 启动netty客户端连接完成 HttpNettyClient.java:89
-INFO :20140720.000540:main netty客户端发送请求 HttpNettyClient.java:100
-INFO :20140720.000540:main netty客户端发送请求完毕 HttpNettyClient.java:117
-INFO :20140720.000540:main 关闭netty客户端连接 HttpNettyClient.java:121
-INFO :20140720.000748:main 启动netty客户端连接 HttpNettyClient.java:50
-INFO :20140720.000749:main 启动netty客户端连接完成 HttpNettyClient.java:89
-INFO :20140720.000749:main netty客户端发送请求 HttpNettyClient.java:100
-INFO :20140720.000749:main netty客户端发送请求完毕 HttpNettyClient.java:117
-INFO :20140720.000749:main 关闭netty客户端连接 HttpNettyClient.java:121
+DEBUG:20141119.144847:jmsContainer-1 监听消息 ConsumerMessageListener.java:14
+DEBUG:20141119.144857:jmsContainer-1 监听消息 ConsumerMessageListener.java:14
+DEBUG:20141119.145345:jmsContainer-1 监听消息 ConsumerMessageListener.java:14
+DEBUG:20141119.145345:jmsContainer-1 ActiveMQTextMessage {commandId = 6, responseRequired = true, messageId = ID:zhang-PC-11375-1416380025599-1:1:2:1:1, originalDestination = null, originalTransactionId = null, producerId = ID:zhang-PC-11375-1416380025599-1:1:2:1, destination = queue://queue, transactionId = null, expiration = 0, timestamp = 1416380025899, arrival = 0, brokerInTime = 1416379778113, brokerOutTime = 1416379778113, correlationId = null, replyTo = null, persistent = true, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@a6a435f, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = 你好，生产者！这是消息：1} ConsumerMessageListener.java:15
+DEBUG:20141119.145355:jmsContainer-1 监听消息 ConsumerMessageListener.java:14
+DEBUG:20141119.145355:jmsContainer-1 ActiveMQTextMessage {commandId = 11, responseRequired = true, messageId = ID:zhang-PC-11375-1416380025599-1:1:2:1:2, originalDestination = null, originalTransactionId = null, producerId = ID:zhang-PC-11375-1416380025599-1:1:2:1, destination = queue://queue, transactionId = null, expiration = 0, timestamp = 1416380030909, arrival = 0, brokerInTime = 1416379783117, brokerOutTime = 1416379788121, correlationId = null, replyTo = null, persistent = true, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@2a63b2e6, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = 你好，生产者！这是消息：2} ConsumerMessageListener.java:15
+DEBUG:20141119.145455:jmsContainer-1 监听消息 ConsumerMessageListener.java:16
+DEBUG:20141119.145455:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:19
+INFO :20141119.145753:main 服务开始启动 ListenerInit.java:15
+INFO :20141119.145753:main 服务结束 ListenerInit.java:29
+DEBUG:20141119.145834:jmsContainer-1 监听消息 ConsumerMessageListener.java:16
+DEBUG:20141119.145856:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:19
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.150725:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.150725:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.173518:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.173518:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.173528:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.173528:jmsContainer-1 你好，生产者！这是消息：2 ConsumerMessageListener.java:25
+DEBUG:20141119.203625:jmsContainer-1 监听消息 ConsumerMessageListener.java:22
+DEBUG:20141119.203625:jmsContainer-1 你好，生产者！这是消息：1 ConsumerMessageListener.java:25
+DEBUG:20141119.222731:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222731:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222736:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222736:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.222952:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.222952:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223039:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223039:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223041:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223041:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223046:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223046:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223047:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223047:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223048:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223048:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223049:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223049:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223216:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223216:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.223317:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.223317:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224036:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224036:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224103:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224103:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224108:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224108:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224143:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224143:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224212:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224212:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224212:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224212:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224222:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224222:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224222:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224222:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224237:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224237:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224317:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224317:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224336:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224337:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224450:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224450:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224505:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224505:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.224544:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.224544:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+ERROR:20141119.230926:main 发送消息发生异常，进行回滚 JmsTools.java:110
+java.lang.UnsupportedOperationException: A destination must be specified.
+	at org.apache.activemq.jms.pool.PooledProducer.send(PooledProducer.java:79)
+	at org.apache.activemq.jms.pool.PooledProducer.send(PooledProducer.java:66)
+	at com.mtools.core.plugin.jms.activemq.JmsTools.sendMessage(JmsTools.java:103)
+	at com.mtools.jms.JMSTest.testSend(JMSTest.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:49)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+DEBUG:20141119.230926:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.230926:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.231047:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.231047:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.231421:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.231421:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.231532:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.231532:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.231620:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.231620:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.231706:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.231713:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.232452:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.232452:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.233010:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.233010:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+ERROR:20141119.233010:main 发送消息发生异常，进行回滚 JmsSender.java:101
+com.mtools.core.plugin.helper.AIPGException: 自定义异常
+	at com.mtools.core.plugin.jms.activemq.JmsSender.synSendMessage(JmsSender.java:98)
+	at com.mtools.jms.JMSTest.testSend(JMSTest.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:49)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+ERROR:20141119.233133:main 发送消息发生异常，进行回滚 JmsSender.java:103
+com.mtools.core.plugin.helper.AIPGException: 自定义异常
+	at com.mtools.core.plugin.jms.activemq.JmsSender.synSendMessage(JmsSender.java:95)
+	at com.mtools.jms.JMSTest.testSend(JMSTest.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:49)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+DEBUG:20141119.233431:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.233431:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.233536:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.233536:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27
+DEBUG:20141119.233559:jmsContainer-1 监听消息 ConsumerMessageListener.java:24
+DEBUG:20141119.233559:jmsContainer-1 这个是生产者发来的消息 ConsumerMessageListener.java:27

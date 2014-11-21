@@ -1,11 +1,16 @@
 package com.mtools.core.plugin.db;
 
 import java.beans.PropertyDescriptor;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,12 +31,19 @@ import org.springframework.jdbc.object.BatchSqlUpdate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.mtools.core.plugin.annotation.Temporary;
+import com.mtools.core.plugin.constant.CoreConstans;
+import com.mtools.core.plugin.helper.AIPGException;
 import com.mtools.core.plugin.helper.Auxs;
+import com.mtools.core.plugin.helper.FuncUtil;
 
 
 @SuppressWarnings({"unchecked","rawtypes"})
 public class DBUtil
 {
+	private static Map tableNameMap = new HashMap();
+	private static Map tableKeysMap = new HashMap();
+	private static Map tableAlisMap = new HashMap();
 	public static int updateObjCond(boolean undercore,JdbcOperations dbop,String tab,Class clzz,Object obj,String... keys)
 	{
 		ArrayList ls=new ArrayList();
@@ -56,7 +68,7 @@ public class DBUtil
 	}
 	public static int updateEx(JdbcOperations dbop,String sql,Object...args)
 	{
-		if(logupdate) log.debug(sql+" "+Arrays.toString(args));
+		if(logupdate) log.debug(sql+" "+FuncUtil.filteSepcStr(Arrays.toString(args)));
 		return dbop.update(sql, args);
 	}
 	public static int[] updateBatch(JdbcOperations dbop,String sql,Object[]... objs)
@@ -167,7 +179,7 @@ public class DBUtil
 	public static int count(JdbcOperations dbop, String sql,Object... args)
 	{
 		
-		sql = "select count(1) from ("+sql+") as total";
+		sql = "select count(1) from ("+sql+")";
 		if(logquery) log.debug("查询列表SQL: " + sql + " 参数: " + Arrays.toString(args));
 		return (Integer)DBUtil.getSimpleObj(dbop, sql, Integer.class,args);
 	}
@@ -282,9 +294,15 @@ public class DBUtil
 		return insertObjEx(undercore,dbop,tab,o.getClass(),o);
 	}
 
-	private static Log log = LogFactory.getLog(DBUtil.class);
+	private static Log log=LogFactory.getLog(DBUtil.class);
 	private static boolean logupdate=true;
 	private static boolean logquery=true;
+	/**
+	 * 初始化日志记录器
+	 * @param logu
+	 * @param logq
+	 * @param needFilter
+	 */
 	public static void initlog(boolean logu,boolean logq)
 	{
 		logupdate=logu;
@@ -413,6 +431,16 @@ public class DBUtil
 		}
 		return true;
 	}
+	/**
+	 * @param underscore
+	 * @param tab
+	 * @param clzz
+	 * @param o
+	 * @param ls
+	 * @param flag
+	 * @param keys
+	 * @return
+	 */
 	public static String createUpdateSql(boolean underscore,String tab,Class clzz,Object o,List ls,int flag,String... keys)
 	{
 		List kval=null;
@@ -429,17 +457,30 @@ public class DBUtil
 		}
 		for(PropertyDescriptor pd:pda)
 		{
-			String methodName=pd.getReadMethod().getName();
-			if(methodName.startsWith("get")){
-				String colName=pd.getName();
-				if(pd.getName().equals("class")) continue;
-				if(underscore) colName=underscoreName(colName);
-				Object val=BeanTools.readProp(o,pd.getReadMethod());
-				if(appendCond(where,colName,val,kval,keys)) continue;
-				if(checkVal(val,flag)) continue;
-				sql.append(colName).append("=?,");
-				ls.add(val);
+			boolean isTemp=false;
+			//使用了@Temporary注解的方法，则不需参与数据库操作
+			Annotation[] annotations = pd.getReadMethod().getDeclaredAnnotations();
+			if(annotations!=null){
+				for(Annotation an:annotations){
+					if(an.annotationType()==Temporary.class){
+						isTemp=true;
+					}
+				}
 			}
+			if(!isTemp){
+				String methodName=pd.getReadMethod().getName();
+				if(methodName.startsWith("get")){
+					String colName=pd.getName();
+					if(pd.getName().equals("class")) continue;
+					if(underscore) colName=underscoreName(colName);
+					Object val=BeanTools.readProp(o,pd.getReadMethod());
+					if(appendCond(where,colName,val,kval,keys)) continue;
+					if(checkVal(val,flag)) continue;
+					sql.append(colName).append("=?,");
+					ls.add(val);
+				}
+			}
+			
 		}
 		sql.setCharAt(sql.length()-1,' ');
 		if(where!=null&&where.length()>5)
@@ -588,10 +629,7 @@ public class DBUtil
 		return where.toString();
 	}	
  
-	public static void main(String[] args)
-	{
-		
-	}
+	 
 	public static boolean checkVal(Object val,int flag)
 	{
 		if(flag == 10){
@@ -611,4 +649,129 @@ public class DBUtil
 	public static int IG_ONEn=4; //忽略-1
 	public static int IG_MIN=8;  //忽略该类型最小的
 	public static int IG_NULLNOTBLANK=16;  //忽略null但不忽略空字符串
+	
+	public static String getTableName(Object obj) throws AIPGException
+	{
+		if(obj==null) return null;
+		return getTableNameEx(obj.getClass());
+	}
+	public static String getTableNameEx(Class clz) throws AIPGException
+	{
+		if(DBUtil.tableNameMap.containsKey(clz))
+			return (String)DBUtil.tableNameMap.get(clz);
+		else{
+			try{
+				Field tnField = clz.getDeclaredField("TABLE_NAME");
+				String name = tnField.get(clz).toString();
+				tableNameMap.put(clz, name);
+				return name;
+			}
+			catch(NoSuchFieldException ex){
+				log.error("找不到对象的pojo类的表名属性:"+clz.getName(),ex);
+				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "找不到对象的pojo类的表名属性:"+clz.getName());
+			}
+			catch(IllegalAccessException ex){
+				log.error("无法获取对象的pojo类的表名属性:"+clz.getName(),ex);
+				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "无法获取对象的pojo类的表名属性:"+clz.getName());
+			}
+		}
+		return null;
+	}
+	/**
+	 * 获取表别名
+	 * @param clz
+	 * @return
+	 * @throws AIPGException
+	 */
+	public static String getTableAlis(Class clz) throws AIPGException
+	{
+		if(DBUtil.tableAlisMap.containsKey(clz))
+			return (String)DBUtil.tableAlisMap.get(clz);
+		else{
+			try{
+				Field tnField = clz.getDeclaredField("TABLE_ALIAS");
+				String name = tnField.get(clz).toString();
+				tableAlisMap.put(clz, name);
+				return name;
+			}
+			catch(NoSuchFieldException ex){
+				log.error("找不到对象的pojo类的表名属性:"+clz.getName(),ex);
+				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "找不到对象的pojo类的表名属性:"+clz.getName());
+			}
+			catch(IllegalAccessException ex){
+				log.error("无法获取对象的pojo类的表名属性:"+clz.getName(),ex);
+				AIPGException.throwExcp(CoreConstans.EXCEPTON_01, "无法获取对象的pojo类的表名属性:"+clz.getName());
+			}
+		}
+		return null;
+	}
+	
+	
+	public static String getTableName(Class c){
+		if(c==null)
+			return null;
+		if(DBUtil.tableNameMap.containsKey(c))
+			return (String)DBUtil.tableNameMap.get(c);
+		else{
+			try{
+				Field tnField = c.getDeclaredField("TABLE_NAME");
+				String name = tnField.get(null).toString();
+				tableNameMap.put(c, name);
+				return name;
+			}
+			catch(NoSuchFieldException ex){
+				log.error("找不到对象的pojo类的表名属性:"+c.getClass().getName(),ex);
+				return null;
+			}
+			catch(IllegalAccessException ex){
+				log.error("无法获取对象的pojo类的表名属性:"+c.getClass().getName(),ex);
+				return null;
+			}
+		}
+	}
+	
+	public static String getDataKeys(Object obj){
+		if(obj==null)
+			return null;
+		try{
+			Method method = obj.getClass().getDeclaredMethod("toDataKeys");
+			return (String)method.invoke(obj);
+		}
+		catch(NoSuchMethodException ex){
+			log.error("找不到对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
+			return null;
+		}
+		catch(InvocationTargetException ex){
+			log.error("找不到对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
+			return null;
+		}
+		catch(IllegalAccessException ex){
+			log.error("无法获取对象的pojo类的toDataKeys方法:"+obj.getClass().getName(),ex);
+			return null;
+		}
+	}	
+	
+	public static String[] getTableKeys(Object obj){
+		if(obj==null)
+			return null;
+		if(DBUtil.tableKeysMap.containsKey(obj.getClass()))
+			return (String[])DBUtil.tableKeysMap.get(obj.getClass());
+		else{
+			try{
+				Field tnField = obj.getClass().getDeclaredField("TABLE_KEYS");
+				String[] keys = (String[])tnField.get(obj);
+				if(keys!=null&&keys.length>0)
+					tableKeysMap.put(obj.getClass(), keys);
+				return keys;
+			}
+			catch(NoSuchFieldException ex){
+				log.error("找不到对象的pojo类的表名属性:"+obj.getClass().getName(),ex);
+				return null;
+			}
+			catch(IllegalAccessException ex){
+				log.error("无法获取对象的pojo类的表名属性:"+obj.getClass().getName(),ex);
+				return null;
+			}
+		}
+	}
 }

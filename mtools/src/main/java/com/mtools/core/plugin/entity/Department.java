@@ -10,8 +10,12 @@ package com.mtools.core.plugin.entity;
  *  功能：部门
  * @date 2014-5-6
  */
-public class Department {
+public class Department extends BaseDbStruct{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1232585315893956712L;
 	public static final String TABLE_ALIAS = "department";
 	public static final String TABLE_NAME = "DEPARTMENT";
 	public static final String[] TABLE_KEYS = { "depid" };

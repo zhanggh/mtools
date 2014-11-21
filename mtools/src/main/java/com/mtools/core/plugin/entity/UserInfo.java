@@ -1,6 +1,5 @@
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import com.mtools.core.plugin.entiy.vo.UserVo;
 /**
  * @author zhang 用户信息
  */
-public class UserInfo implements Serializable,Cloneable{
+public class UserInfo  extends BaseDbStruct implements Cloneable{
 
 	/**
 	 * 说明：
@@ -18,8 +17,8 @@ public class UserInfo implements Serializable,Cloneable{
 	 */
 	private static final long serialVersionUID = -8128093648505704813L;
 	
-	public static final String TABLE_ALIAS = "userinfo";
-	public static final String TABLE_NAME = "userinfo";
+	public static final String TABLE_ALIAS = "us";
+	public static final String TABLE_NAME = "STMUSER";
 	public static final String[] TABLE_KEYS = { "USERID" };
 	
 	private String userid;// 登陆名

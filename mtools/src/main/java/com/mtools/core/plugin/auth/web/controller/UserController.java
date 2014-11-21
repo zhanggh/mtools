@@ -183,11 +183,12 @@ public class UserController extends BaseController {
 
 	/**
 	 * 功能：新增用户 2014-4-29
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/usersearch/create")
 	public String createUser(@ModelAttribute("user") UserInfo user,
 			UserRole urole, ModelMap model, HttpSession session,
-			HttpServletRequest request, String flag, String id) {
+			HttpServletRequest request, String flag, String id) throws Exception {
 		try {
 			model.addAttribute(CoreConstans.OP_NAME, "新增");
 			if ("1".equals(flag)) {
@@ -262,11 +263,12 @@ public class UserController extends BaseController {
 
 	/**
 	 * 功能：删除用户 2014-4-29
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/usersearch/delete")
 	public String deleteUser(UserInfo user, ModelMap model,
 			HttpSession session, HttpServletRequest request, String flag,
-			String id) {
+			String id) throws Exception {
 		try {
 			model.addAttribute(CoreConstans.OP_NAME, "删除");
 			// 部门

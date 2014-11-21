@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--这个是队列目的地-->  
+	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">  
+	    <constructor-arg>  
+	        <value>queue</value>  
+	    </constructor-arg>  
+	</bean> 
+
+	<!-- 消息监听器 -->  
+	<bean id="consumerMessageListener" class="com.mtools.core.plugin.jms.listener.ConsumerMessageListener"/>    
+
+	<!-- 消息监听容器 -->  
+  	<bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">  
+	    <property name="connectionFactory" ref="singleConFatry" />  
+	    <property name="destination" ref="queueDestination" />  
+	    <property name="messageListener" ref="consumerMessageListener" />  
+	</bean> 
+</beans>

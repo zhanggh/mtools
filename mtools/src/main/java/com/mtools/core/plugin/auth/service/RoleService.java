@@ -26,8 +26,9 @@ public interface RoleService {
 	 /**
 	 * 功能：获取用户角色
 	 * 2014-4-29
+	 * @throws Exception 
 	 */
-	public void setUserRole(UserVo user);
+	public void setUserRole(UserVo user) throws Exception;
 	
 	/**
 	 * 功能：新增角色

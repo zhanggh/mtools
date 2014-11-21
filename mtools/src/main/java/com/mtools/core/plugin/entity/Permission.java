@@ -1,17 +1,16 @@
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
 
-public class Permission implements Serializable{
+public class Permission  extends BaseDbStruct{
 
 	/**
 	 * 说明：
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 7896312659244014536L;
-	public static final String TABLE_ALIAS = "permission";
-	public static final String TABLE_NAME = "permission";
-	public static final String[] TABLE_KEYS = { "permid" };
+	public static final String TABLE_ALIAS = "pm";
+	public static final String TABLE_NAME = "PERMISSION";
+	public static final String[] TABLE_KEYS = { "PERMID" };
 	private String permid;
 	private String menuid;
 	private String permuri;

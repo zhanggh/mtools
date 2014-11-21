@@ -1,11 +1,14 @@
 package com.mtools.core.plugin.db;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -71,10 +74,15 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 
 	/** Map of the fields we provide mapping for */
 	private Map<String, PropertyDescriptor> mappedFields;
+	private Map<String, PropertyDescriptor> subMappedFields;
+	private Map<String, Class> subMappedFieldsSuperClz;
 
 	/** Set of bean properties we provide mapping for */
 	private Set<String> mappedProperties;
+	private Set<String> subMappedProperties;
 
+	private PropertyDescriptor[] pds ;
+	private List<PropertyDescriptor> subPds ;
 
 	/**
 	 * Create a new BeanPropertyRowMapper for bean-style configuration.
@@ -126,12 +134,31 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 	 * Initialize the mapping metadata for the given class.
 	 * @param mappedClass the mapped class.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void initialize(Class<T> mappedClass) {
+		//vo
 		this.mappedClass = mappedClass;
 		this.mappedFields = new HashMap<String, PropertyDescriptor>();
 		this.mappedProperties = new HashSet<String>();
-		PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(mappedClass);
+		//子类使用的相关变量
+		this.subMappedFields = new HashMap<String, PropertyDescriptor>();
+		this.subMappedProperties = new HashSet<String>();
+		this.subMappedFieldsSuperClz = new HashMap<String, Class>();;
+		
+		pds = BeanUtils.getPropertyDescriptors(mappedClass);
+		subPds=new ArrayList<PropertyDescriptor>();
+		List<Class> subClzs=new ArrayList<Class>();
 		for (PropertyDescriptor pd : pds) {
+//			 System.out.println("字段名："+pd.getDisplayName());
+			 Type type = pd.getPropertyType().getGenericSuperclass();
+			 
+			 if(type!=null&&"class com.mtools.core.plugin.entity.BaseDbStruct".equals(type.toString())){
+//				 System.out.println("type："+type);
+				 Class clz = pd.getPropertyType();
+				 subPds.add(pd);
+				 subClzs.add(clz);
+				 initializeExt(clz);
+			 }
 			if (pd.getWriteMethod() != null) {
 				this.mappedFields.put(pd.getName().toLowerCase(), pd);
 				String underscoredName = underscoreName(pd.getName());
@@ -139,6 +166,26 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 					this.mappedFields.put(underscoredName, pd);
 				}
 				this.mappedProperties.add(pd.getName());
+			}
+		}
+	}
+	/**
+	 * Initialize the mapping metadata for the given class.
+	 * @param mappedClass the mapped class.
+	 */
+	protected void initializeExt(Class<T> mappedClass) {
+		PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(mappedClass);
+		for (PropertyDescriptor pd : pds) {
+//			System.out.println("字段名："+pd.getDisplayName());
+			if (pd.getWriteMethod() != null) {
+				this.subMappedFields.put(pd.getName().toLowerCase(), pd);
+				this.subMappedFieldsSuperClz.put(pd.getName(), mappedClass);
+				String underscoredName = underscoreName(pd.getName());
+				if (!pd.getName().toLowerCase().equals(underscoredName)) {
+					this.subMappedFields.put(underscoredName, pd);
+					this.subMappedFieldsSuperClz.put(underscoredName, mappedClass);
+				}
+				this.subMappedProperties.add(pd.getName());
 			}
 		}
 	}
@@ -224,8 +271,7 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 					}
 					try {
 						bw.setPropertyValue(pd.getName(), value);
-					}
-					catch (TypeMismatchException e) {
+					}catch (TypeMismatchException e) {
 						if (value == null && primitivesDefaultedForNullValue) {
 							logger.debug("Intercepted TypeMismatchException for row " + rowNumber +
 									" and column '" + column + "' with value " + value +
@@ -244,7 +290,7 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 					throw new DataRetrievalFailureException(
 							"Unable to map column " + column + " to property " + pd.getName(), ex);
 				}
-			}
+			} 
 		}
 
 		if (populatedProperties != null && !populatedProperties.equals(this.mappedProperties)) {
@@ -252,6 +298,69 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 					"necessary to populate object of class [" + this.mappedClass + "]: " + this.mappedProperties);
 		}
 
+		//构建子对象
+		for(PropertyDescriptor pd:subPds){
+			Object obj = mapRow2SubObj(rs, rowNumber, pd.getPropertyType());
+			bw.setPropertyValue(pd.getName(), obj);
+		}
+		return mappedObject;
+	}
+	/**
+	 * Extract the values for all columns in the current row.
+	 * <p>Utilizes public setters and result set metadata.
+	 * @see java.sql.ResultSetMetaData
+	 */
+	@SuppressWarnings("rawtypes")
+	public Object mapRow2SubObj(ResultSet rs, int rowNumber,Class subClz) throws SQLException {
+		Assert.state(subClz != null, "Mapped class was not specified");
+		Object mappedObject = BeanUtils.instantiate(subClz);
+		BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(mappedObject);
+		initBeanWrapper(bw);
+		
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columnCount = rsmd.getColumnCount();
+		Set<String> populatedProperties = (isCheckFullyPopulated() ? new HashSet<String>() : null);
+		
+		for (int index = 1; index <= columnCount; index++) {
+			String column = JdbcUtils.lookupColumnName(rsmd, index);
+			PropertyDescriptor pd = this.subMappedFields.get(column.replaceAll(" ", "").toLowerCase());
+			Class clz = this.subMappedFieldsSuperClz.get(column.replaceAll(" ", "").toLowerCase());
+			if (pd != null&&clz==subClz) {
+				try {
+					Object value = getColumnValue(rs, index, pd);
+					if (logger.isDebugEnabled() && rowNumber == 0) {
+						//logger.debug("Mapping column '" + column + "' to property '" +
+						//		pd.getName() + "' of type " + pd.getPropertyType());
+					}
+					try {
+						bw.setPropertyValue(pd.getName(), value);
+					}catch (TypeMismatchException e) {
+						if (value == null && primitivesDefaultedForNullValue) {
+							logger.debug("Intercepted TypeMismatchException for row " + rowNumber +
+									" and column '" + column + "' with value " + value +
+									" when setting property '" + pd.getName() + "' of type " + pd.getPropertyType() +
+									" on object: " + mappedObject);
+						}
+						else {
+							throw e;
+						}
+					}
+					if (populatedProperties != null) {
+						populatedProperties.add(pd.getName());
+					}
+				}
+				catch (NotWritablePropertyException ex) {
+					throw new DataRetrievalFailureException(
+							"Unable to map column " + column + " to property " + pd.getName(), ex);
+				}
+			} 
+		}
+		
+		if (populatedProperties != null && !populatedProperties.equals(this.subMappedProperties)) {
+			throw new InvalidDataAccessApiUsageException("Given ResultSet does not contain all fields " +
+					"necessary to populate object of class [" + subClz+ "]: " + this.subMappedProperties);
+		}
+		
 		return mappedObject;
 	}
 
@@ -294,4 +403,5 @@ public class BeanPropRowMap<T> implements RowMapper<T> {
 		return newInstance;
 	}
 
+	 
 }

@@ -36,8 +36,25 @@ public class CoreParams {
 	public String isOrcl;
 	@Value("${serverName}")
 	public String serverName;
-
+	@Value("${authIp}")
+	public String authIp;
+	@Value("${indexpth}")
+	public String indexpth;
+	@Value("${fileContxtPth}")
+	public String fileContxtPth;
+	@Value("${tomcatEncode}")
+	public String tomcatEncode;
+	@Value("${isTest}")
+	public boolean isTest;
 	
+	public String getAuthIp() {
+		return authIp;
+	}
+
+	public void setAuthIp(String authIp) {
+		this.authIp = authIp;
+	}
+
 	/**
 	 * @return the serverName
 	 */
@@ -50,6 +67,21 @@ public class CoreParams {
 	 */
 	public void setServerName(String serverName) {
 		this.serverName = serverName;
+	}
+
+	
+	/**
+	 * @return the indexpth
+	 */
+	public String getIndexpth() {
+		return indexpth;
+	}
+
+	/**
+	 * @param indexpth the indexpth to set
+	 */
+	public void setIndexpth(String indexpth) {
+		this.indexpth = indexpth;
 	}
 
 	/**
@@ -128,4 +160,29 @@ public class CoreParams {
 	public void setReloadIndex(String reloadIndex) {
 		this.reloadIndex = reloadIndex;
 	}
+
+	public String getFileContxtPth() {
+		return fileContxtPth;
+	}
+
+	public void setFileContxtPth(String fileContxtPth) {
+		this.fileContxtPth = fileContxtPth;
+	}
+
+	public String getTomcatEncode() {
+		return tomcatEncode;
+	}
+
+	public void setTomcatEncode(String tomcatEncode) {
+		this.tomcatEncode = tomcatEncode;
+	}
+
+	public boolean getIsTest() {
+		return isTest;
+	}
+
+	public void setIsTest(boolean isTest) {
+		this.isTest = isTest;
+	}
+	
 }

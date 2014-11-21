@@ -35,17 +35,18 @@ import com.mtools.core.plugin.helper.FuncUtil;
  */
 @Component("auth")
 public class AuthPlugin extends BasePlugin {
-
+     
 	@Cacheable(value="permOfUser",key="#userId + 'AuthPlugin.getPermOfUser'+#permType")
-	public List<Permission> getPermOfUser(String userId, String permType) {
+	public List<Permission> getPermOfUser(String userId, String permType) throws Exception {
 		String sql = "select p.* from Permission p, roleperm r, USERROLE U where p.permid = r.permid and u.roleid = r.roleid and p.permtype=? and u.userid = ?";
 		List<Permission> perms = this.dao.search(sql, Permission.class,
 				permType, userId);
+		
 		return perms;
 	}
 
 	@Cacheable(value="allPerms",key="AuthPlugin.getPerms")
-	public List<Permission> getPerms() {
+	public List<Permission> getPerms() throws Exception {
 
 		String sql = "select p.* from Permission p";
 		List<Permission> perms = this.dao.search(sql, Permission.class, null);
@@ -69,7 +70,7 @@ public class AuthPlugin extends BasePlugin {
 	}
 
 	@Cacheable(value="permByUri",key="#Uri + 'AuthPlugin.getPermByUri'")
-	public Permission getPermByUri(String Uri) {
+	public Permission getPermByUri(String Uri) throws Exception {
 		String sql = "select p.* from Permission p where p.permuri like '%"
 				+ Uri.substring(1) + "%'";
 		List<Permission> perms = this.dao.search(sql, Permission.class, null);
@@ -81,9 +82,10 @@ public class AuthPlugin extends BasePlugin {
 
 	/**
 	 * 功能：根据url或者访问名称 2014-4-14
+	 * @throws Exception 
 	 */
 	@Cacheable(value="permNameByUri",key="#Uri + 'AuthPlugin.getPermName'")
-	public String getPermName(String Uri) {
+	public String getPermName(String Uri) throws Exception {
 		Permission perm = getPermByUri(Uri);
 		if (perm != null) {
 			return perm.getPermname();
@@ -112,11 +114,12 @@ public class AuthPlugin extends BasePlugin {
 	 * 功能：查询权限列表 2014-4-23
 	 * 
 	 * @param page
+	 * @throws Exception 
 	 */
 	@Cacheable(value="searchPerms",key="#perm.permid+''+#perm.permname+'AuthPlugin.searchPerm'+#perm.permuri+''+#page.pageIndex+''+#page.pageSize")
 	public List<AuthVo> searchPerm(Permission perm, String permtype,
-			PageInfo page) {
-		String sql = "select p.* ,nvl(m.name,'其他') menuname from permission p left join menuinfo m on m.menuid=p.menuid where p.permtype=? ";
+			PageInfo page) throws Exception {
+		String sql = "select p.* ,nvl(m.menuname,'其他') menuname from permission p left join menuinfo m on m.menuid=p.menuid where p.permtype=? ";
 		if (!FuncUtil.isEmpty(perm.getPermname())) {
 			sql += " and permname like '%" + perm.getPermname() + "%'";
 		}
@@ -211,9 +214,11 @@ public class AuthPlugin extends BasePlugin {
 	/**
 	 * 功能： 2014-5-4
 	 * @param page 
+	 * @throws Exception 
+	 * @throws NumberFormatException 
 	 */
 	@Cacheable(value="allroles",key="#role.roleid+''+#role.rolename+'AuthPlugin.getRoles'+#page.pageIndex")
-	public List<Role> getRoles(Role role, PageInfo page) {
+	public List<Role> getRoles(Role role, PageInfo page) throws NumberFormatException, Exception {
 
 		String sql = "select * from role r where 1=1 ";
 
@@ -236,9 +241,10 @@ public class AuthPlugin extends BasePlugin {
 
 	/**
 	 * 功能：已选择的权限 2014-5-5
+	 * @throws Exception 
 	 */
 	@Cacheable(value="selectPermRole",key="#role.roleid")
-	public List<Permission> getSelPermsByRole(Role role) {
+	public List<Permission> getSelPermsByRole(Role role) throws Exception {
 		String sql = "select p.* from roleperm r ,permission p where p.permid=r.permid and r.roleid=?";
 		List<Permission> roleperms = this.dao.search(sql, Permission.class,
 				role.getRoleid());
@@ -247,9 +253,10 @@ public class AuthPlugin extends BasePlugin {
 
 	/**
 	 * 功能：未选中的权限 2014-5-5
+	 * @throws Exception 
 	 */
 	@Cacheable(value="UnselPermsByRole",key="#role.roleid")
-	public List<Permission> getUnselPermsByRole(Role role) {
+	public List<Permission> getUnselPermsByRole(Role role) throws Exception {
 		String sql = "select p.* from permission p where p.permid not in(select r.permid from roleperm r,permission p  where r.roleid=? and p.permid=r.permid)";
 		List<Permission> perms = this.dao.search(sql, Permission.class,
 				role.getRoleid());
@@ -326,7 +333,7 @@ public class AuthPlugin extends BasePlugin {
 	public void addRole(Role role, String permids, ModelMap model) throws AIPGException {
 		try {
 			Roleperm rperm;
-			Long roleid=this.getSeqOrc("RLPERMSEQ");
+			Long roleid=this.getSeq("RLPERMSEQ");
 			role.setRoleid(String.valueOf(roleid));
 			this.dao.add(role);
 			if(permids==null)
@@ -376,9 +383,10 @@ public class AuthPlugin extends BasePlugin {
 	/**
 	 * 功能：角色信息
 	 * 2014-5-7
+	 * @throws Exception 
 	 */
 	@Cacheable({"rolesFoMap"})
-	public Map<String, String> getRolesFoMap() {
+	public Map<String, String> getRolesFoMap() throws Exception {
 		String sql = "select t.roleid,t.rolename from role t";
 		List<Object[]> roles = this.dao.searchForArray(sql, null);
 		Map<String, String> rolsMap = Maps.newConcurrentMap();
@@ -392,9 +400,10 @@ public class AuthPlugin extends BasePlugin {
 	 * 功能：角色信息
 	 * 2014-5-7
 	 * @param userid 
+	 * @throws Exception 
 	 */
 	@Cacheable(value={"getroles"},key="#userid+'AuthPlugin.getRoles'")
-	public List<RoleVo> getRoles(String userid) {
+	public List<RoleVo> getRoles(String userid) throws Exception {
 		String sql = "select t.roleid,t.rolename,u.userid from role t left join (select r.* from userrole r where r.userid=?) u on u.roleid=t.roleid";
 		if(FuncUtil.isEmpty(userid)){
 			userid="";

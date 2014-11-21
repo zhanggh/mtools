@@ -1,8 +1,11 @@
 package com.mtools.core.plugin.entity;
 
-public class UserRole {
-
-	public static final String TABLE_ALIAS = "userrole";
+public class UserRole  extends BaseDbStruct{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2039121184474706060L;
+	public static final String TABLE_ALIAS = "ur";
 	public static final String TABLE_NAME = "USERROLE";
 	public static final String[] TABLE_KEYS = { "USERID", "ROLEID" };
 

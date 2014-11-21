@@ -5,17 +5,37 @@
  */
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
 
 /**
  * @author zhang
  *  功能：
  * @date 2014-4-25
  */
-public class Sort implements Serializable{
+public class Sort  extends BaseDbStruct{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5633653779844823353L;
 	public String id;
 	public String name;
+	public String  creattime;
+	public String  ascOrDes="desc";//升序或者降序
+	
+	
+	
+	public String getAscOrDes() {
+		return ascOrDes;
+	}
+	public void setAscOrDes(String ascOrDes) {
+		this.ascOrDes = ascOrDes;
+	}
+	public String getCreattime() {
+		return creattime;
+	}
+	public void setCreattime(String creattime) {
+		this.creattime = creattime;
+	}
 	/**
 	 * @return the id
 	 */

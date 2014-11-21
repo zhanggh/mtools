@@ -64,7 +64,7 @@
 		<property name="dataSource" ref="aliDataSource" />
 	</bean>
 
-	<bean id="alidao" class="com.mtools.core.plugin.db.CoreDao">
+	<bean id="dao" class="com.mtools.core.plugin.db.CoreDao">
 		<property name="dbop" ref="alidbop" />
 		<property name="isOrcl" value="${db.ali.isOrcl}" />
 	</bean>

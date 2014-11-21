@@ -11,10 +11,14 @@ import java.sql.Timestamp;
  * 
  *         2014-4-14
  */
-public class TraceLog {
+public class TraceLog  extends BaseDbStruct{
 
-	public static final String TABLE_ALIAS = "tracelog";
-	public static final String TABLE_NAME = "tracelog";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6033205800212075344L;
+	public static final String TABLE_ALIAS = "tl";
+	public static final String TABLE_NAME = "TRACELOG";
 	public static final String[] TABLE_KEYS = { "optid" };
 
 	private String optid;// 操作编号

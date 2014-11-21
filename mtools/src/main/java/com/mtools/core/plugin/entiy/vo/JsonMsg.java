@@ -3,12 +3,15 @@
  * 2014-4-17
  */
 package com.mtools.core.plugin.entiy.vo;
- 
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * @author zhang
  *	向前端返回json格式的信息
  * 2014-4-17
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class JsonMsg<T> {
 
 	public String code="1";//1成功，非1失败

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import com.google.common.collect.Lists;
 import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.entity.PageInfo;
+import com.mtools.core.plugin.helper.FuncUtil;
 import com.mtools.core.plugin.properties.CoreParams;
 
 /**
@@ -35,8 +36,6 @@ public class SolrClientPlugin<T> extends BasePlugin {
 
 	private String solrUrl = "http://172.16.1.11:8983/solr";
 	private HttpSolrServer server = null;
-	@Resource(name = "coreParams")
-	CoreParams coreParams;
 
 	public void initSolr() {
 		server = new HttpSolrServer(coreParams.solrUrl);
@@ -99,7 +98,9 @@ public class SolrClientPlugin<T> extends BasePlugin {
 			int start = (Integer.parseInt(page.getPageIndex()) - 1)
 					* Integer.parseInt(page.getPageSize());
 			SolrQuery query = new SolrQuery(keyword);
-			query.setParam("fq", "belong:" + belong);
+			if(!FuncUtil.isEmpty(belong)){
+				query.setParam("fq", "belong:" + belong);
+			}
 			query.setStart(start).setRows(Integer.parseInt(page.getPageSize()));
 			QueryResponse resp = server.query(query);
 			// 查询出来的结果都保存在SolrDocumentList中

@@ -1,20 +1,18 @@
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
-import com.google.common.collect.Lists;
+import com.mtools.core.plugin.annotation.Temporary;
 
-
-public class MenuInfo implements Serializable{
+public class MenuInfo  extends BaseDbStruct{
 
 	/**
 	 * 说明：
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 4343797726853346163L;
-	public static final String TABLE_ALIAS = "menuinfo";
-	public static final String TABLE_NAME = "menuinfo";
+	public static final String TABLE_ALIAS = "mu";
+	public static final String TABLE_NAME = "MENUINFO";
 	public static final String[] TABLE_KEYS = { "MENUID" };
 	private String menuid;
 	private String parentid;
@@ -105,12 +103,13 @@ public class MenuInfo implements Serializable{
 	public void setOrdernum(long ordernum) {
 		this.ordernum = ordernum;
 	}
-	
-	 /**
+	 
+    /**
      * @return
      */
-    public boolean isHasChildren() {
-        return !(this.getChildren()==null||this.getChildren().isEmpty());
+	@Temporary
+    public boolean getHasChildren() {
+    	return !(this.getChildren()==null||this.getChildren().isEmpty());
     }
 
 }

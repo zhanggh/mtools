@@ -32,9 +32,10 @@ public class Crypto {
 	}
 	
 	public static void main(String[] args){
-		String str="DuGT74M4jOi2KVkgyuLyow==";
+		String str="UR+On9NZY0z6IKqQIGLWYA==";
 		try{
 			str=decode(str);
+//			str=encode("222222");
 		}catch(Exception e){
 			
 		}

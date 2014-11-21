@@ -3,6 +3,7 @@ package com.mtools.core.plugin.helper;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.mtools.core.plugin.db.KVMFilterWriter;
 import com.thoughtworks.xstream.XStream;

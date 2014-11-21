@@ -18,8 +18,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.constant.CoreConstans;
+import com.mtools.core.plugin.db.DBSqlUtil;
 import com.mtools.core.plugin.entity.MenuInfo;
 import com.mtools.core.plugin.entity.PageInfo;
+import com.mtools.core.plugin.entity.SqlParam;
 import com.mtools.core.plugin.helper.AIPGException;
 import com.mtools.core.plugin.helper.FuncUtil;
 import com.mtools.core.plugin.helper.XStreamIg;
@@ -32,21 +34,49 @@ public class MenuPlugin extends BasePlugin {
 
 	/**
 	 * 功能：根据用户号查询该用户的所有菜单 2014-4-14
+	 * @throws Exception 
 	 */
 	@Cacheable(value={"getMenus"},key="#userid+'MenuPlugin.getMenus'+#menutype")
-	public List<MenuInfo> getMenus(String userid,String menutype) {
-		String sql = "select * from menuinfo t where t.menutype=?";
-		List<MenuInfo> menus = this.dao.search(sql, MenuInfo.class, menutype);
+	public List<MenuInfo> getUserMenus(String userid,String menutype) throws Exception {
+		boolean contain=false;
+		String sql ="select t.* from menuinfo t  where t.menuid in(select distinct (p.menuid)"
+					+" from permission p ,roleperm r, USERROLE U "
+					+" where p.permid = r.permid"
+					+" and u.roleid = r.roleid"
+					+" and p.permtype =?"
+					+" and u.userid =?)";
+		List<MenuInfo> menus = this.dao.search(sql, MenuInfo.class,menutype,userid);
+		List<MenuInfo> temMs=null;
+		List<MenuInfo> retMenus=Lists.newArrayList();
+		for(MenuInfo menu:menus){
+			temMs=this.dao.search("select * from menuinfo m start with m.menuid=? connect by prior m.parentid=m.menuid", MenuInfo.class, menu.getMenuid());
+			if(temMs!=null){
+				for(MenuInfo tmenu:temMs){
+					for(MenuInfo tmu:retMenus){
+						if(tmu.getMenuid().equals(tmenu.getMenuid())){
+							contain=true;
+							break;
+						}
+					}
+					if(!contain){
+						retMenus.add(tmenu);
+					}else{
+						contain=false;
+					}
+				}
+			}
+		}
+		menus.clear();
 		List<MenuInfo> parantMenu = Lists.newArrayList();
-		for (MenuInfo menu : menus) {
+		for (MenuInfo menu : retMenus) {
 			if (menu.getParentid() == null||"0".equals(menu.getParentid())) {
 				parantMenu.add(menu);
 			}
 		}
 		for(MenuInfo menu : parantMenu){
-			menus.remove(menu);
+			retMenus.remove(menu);
 		}
-		getPackgMenus(menus, parantMenu);
+		getPackgMenus(retMenus, parantMenu);
 //		log.info(XStreamIg.toXml(parantMenu));
 		return parantMenu;
 	}
@@ -76,29 +106,31 @@ public class MenuPlugin extends BasePlugin {
 	 * 功能：菜单列表 2014-4-23
 	 * 
 	 * @param page
+	 * @throws Exception 
 	 */
-	@Cacheable(value={"searchMenu"},key="#menu.menuid+''+#menu.name+'MenuPlugin.searchMenu'+#menutype+''+#page.pageIndex+''+#page.pageSize")
-	public List<MenuInfo> searchMenu(MenuInfo menu, String menutype,
-			PageInfo page) {
-		String sql = "select * from menuinfo t where t.menutype=? ";
-		if (!FuncUtil.isEmpty(menu.getMenuname())) {
-			sql += " and t.menuname like '%" + menu.getMenuname() + "%'";
-		}
-		if (!FuncUtil.isEmpty(menu.getMenuid())) {
-			sql += "and t.menuid = " + menu.getMenuid();
-		}
-		// 总笔数
-		int count = this.dao.count(sql, menutype);
-		page.setItemCount(count);
+	@Cacheable(value={"searchMenu"},key="#menu.menuid+''+#menu.menuname+'MenuPlugin.searchMenu'+#menutype+''+#page.pageIndex+''+#page.pageSize")
+	public List<MenuInfo> searchMenu(MenuInfo menu,
+			PageInfo page) throws Exception {
+		DBSqlUtil<MenuInfo> dbSqlUtil=new DBSqlUtil<MenuInfo>();
+		dbSqlUtil.addTableObj(menu);
+		//增加条件
+		dbSqlUtil.addLiketField("menuname");
 		if (!FuncUtil.isEmpty(page.getSort().getId())) {
-			sql += " order by menuid " + page.getSort().getId();
+			dbSqlUtil.setOrderbyField("menuid", page.getSort().getId());
 		}
 		if (!FuncUtil.isEmpty(page.getSort().getName())) {
-			sql += " order by menuname " + page.getSort().getName();
+			dbSqlUtil.setOrderbyField("menuname", page.getSort().getName());
 		}
-		List<MenuInfo> menus = this.dao.searchPage(sql, MenuInfo.class,
+		//构建where语句
+		SqlParam sqlParam = dbSqlUtil.buildWhereSql(menu);
+		
+		// 总笔数
+		int count = this.dao.count(dbSqlUtil.buildCountSql()+sqlParam.getSql(),sqlParam.getParams().toArray());
+		page.setItemCount(count);
+		
+		List<MenuInfo> menus = this.dao.searchPage(dbSqlUtil.buildSelect()+sqlParam.getSql(), MenuInfo.class,
 				Integer.parseInt(page.getPageIndex()),
-				Integer.parseInt(page.getPageSize()), menutype);
+				Integer.parseInt(page.getPageSize()),sqlParam.getParams().toArray());
 		if (menus == null)
 			menus = Lists.newArrayList();
 		return menus;
@@ -178,8 +210,8 @@ public class MenuPlugin extends BasePlugin {
 	}
 
 	@Cacheable(value={"getMenuFoMap"})
-	public Map<String, String> getMenuFoMap() {
-		String sql = "select t.menuid,t.name from menuinfo t";
+	public Map<String, String> getMenuFoMap() throws Exception {
+		String sql = "select t.menuid,t.menuname from menuinfo t";
 		List<Object[]> menus = this.dao.searchForArray(sql, null);
 		Map<String, String> menusMap = Maps.newConcurrentMap();
 		for (Object[] value : menus) {

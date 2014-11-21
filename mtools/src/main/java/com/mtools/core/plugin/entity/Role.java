@@ -1,16 +1,15 @@
 package com.mtools.core.plugin.entity;
 
-import java.io.Serializable;
 
-public class Role implements Serializable{
+public class Role extends BaseDbStruct{
 
 	/**
 	 * 说明：
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -6328054563985222114L;
-	public static final String TABLE_ALIAS = "sys_role";
-	public static final String TABLE_NAME = "sys_role";
+	public static final String TABLE_ALIAS = "rl";
+	public static final String TABLE_NAME = "ROLE";
 	public static final String[] TABLE_KEYS = { "roleid" };
 
 	public String roleid;

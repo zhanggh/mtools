@@ -41,9 +41,8 @@ public class MenuController extends BaseController {
 	public String menusearch(MenuInfo menu, ModelMap model, String flag,PageInfo page,
 			String sortid, HttpSession session, HttpServletRequest request)
 			throws Exception {
-
-		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,
-				coreParams.serverName, this.page);
+		menu.setMenutype(coreParams.serverName);
+		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,this.page);
 		model.addAttribute("menus", menus);
 
 		return "admin/sys/menus/listTable";
@@ -52,9 +51,8 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "/menusearch", method = RequestMethod.GET)
 	public String menusearch2(MenuInfo menu, ModelMap model, String flag,PageInfo page,
 			HttpSession session, HttpServletRequest request) throws Exception {
-
-		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,
-				coreParams.serverName, this.page);
+		menu.setMenutype(coreParams.serverName);
+		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,this.page);
 		model.addAttribute("menus", menus);
 
 		return "admin/sys/menus/list";
@@ -65,8 +63,8 @@ public class MenuController extends BaseController {
 	public String viewMenu(MenuInfo menu, ModelMap model, String flag,
 			HttpSession session, HttpServletRequest request) throws Exception {
 		model.addAttribute(CoreConstans.OP_NAME, "查看");
-		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,
-				coreParams.serverName, this.page);
+		menu.setMenutype(coreParams.serverName);
+		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu, this.page);
 		model.addAttribute("menu", menus.get(0));
 
 		Map<String,String> menusMap =this.menuPlugin.getMenuFoMap();
@@ -83,8 +81,8 @@ public class MenuController extends BaseController {
 		if ("1".equals(flag)) {
 			this.menuPlugin.modmenu(menu,model);
 		}
-		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,
-				coreParams.serverName, this.page);
+		menu.setMenutype(coreParams.serverName);
+		List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,this.page);
 		model.addAttribute("menu", menus.get(0));
 		Map<String,String> menusMap =this.menuPlugin.getMenuFoMap();
 		model.addAttribute("menus", menusMap);
@@ -94,7 +92,7 @@ public class MenuController extends BaseController {
 	 
 	@RequestMapping(value = "/menusearch/delete")
 	public String deleteMenu(MenuInfo menu, ModelMap model, String flag,String id,
-			HttpSession session, HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request) throws Exception {
 		model.addAttribute(CoreConstans.OP_NAME, "删除");
 		if ("1".equals(flag)) {
 			try {
@@ -106,8 +104,8 @@ public class MenuController extends BaseController {
 			}
 			
 		}else{
-			List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,
-					coreParams.serverName, this.page);
+			menu.setMenutype(coreParams.serverName);
+			List<MenuInfo> menus = this.menuPlugin.searchMenu(menu,this.page);
 			model.addAttribute("menu", menus.get(0));
 			Map<String,String> menusMap =this.menuPlugin.getMenuFoMap();
 			model.addAttribute("menus", menusMap);

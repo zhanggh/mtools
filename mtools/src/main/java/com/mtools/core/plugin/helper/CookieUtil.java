@@ -39,12 +39,14 @@ public class CookieUtil  {
 			String method=req.getMethod();
 			String queryStr=req.getQueryString();
 			String reqestUri=req.getServletPath();//.getRequestURI();
-			if("GET".equals(method)&&queryStr!=null){
-				reqestUri+="?"+queryStr;
+			if(!"/admin/index".equals(reqestUri)&&!"/index".equals(reqestUri)){
+				if("GET".equals(method)&&queryStr!=null){
+					reqestUri+="?"+queryStr;
+				}
+				orgUri=  CookieUtil.getCookie(req, CoreConstans.REQESTURI);
+				log.info("原请求uri:"+reqestUri);
+				CookieUtil.setCookie(resp, CoreConstans.REQESTURI, reqestUri);
 			}
-			orgUri=  CookieUtil.getCookie(req, CoreConstans.REQESTURI);
-			log.info("原请求uri:"+reqestUri);
-			CookieUtil.setCookie(resp, CoreConstans.REQESTURI, reqestUri);
 		}catch(Exception e){
 			e.printStackTrace();
 			log.error("初始化cookie异常:"+e.getMessage());

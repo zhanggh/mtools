@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.mtools.core.plugin.BasePlugin;
+import com.mtools.core.plugin.constant.CoreConstans;
 import com.mtools.core.plugin.helper.SpringUtil;
 import com.mtools.core.plugin.notify.SystemRunningNotify;
  
@@ -29,8 +30,6 @@ public class ComTaskPlugin extends BasePlugin{
 
 	@Resource(name="sysRunningNotify")
 	SystemRunningNotify notify;
-	@Resource(name="taskExecutor")
-	TaskExecutor taskExecutor;
 //	@Scheduled(cron="0 0 9 * * ?") 
 //	@Scheduled(fixedDelay=16000)
 	public void singing(){  
@@ -48,8 +47,11 @@ public class ComTaskPlugin extends BasePlugin{
 	public void perDayMonitor(){
 		log.info("系统每日正常运行通知!");
 		
-		notify.setSubject(SpringUtil.getCxt().getApplicationName()+"系统每日正常运行通知!");
-		notify.setContext(SpringUtil.getCxt().getApplicationName()+"系统每日正常运行通知!");
-		taskExecutor.execute(notify);
+//		notify.setSubject(SpringUtil.getCxt().getApplicationName()+"系统每日正常运行通知!");
+//		notify.setContext(SpringUtil.getCxt().getApplicationName()+"系统每日正常运行通知!");
+//		notify.setMailType(CoreConstans.EXCEPTON_01);//
+//		notify.getFileList().add("H:/Repositories/通联代码/aiposp/mtools/readme.txt");
+//		notify.getFileList().add("H:/Repositories/通联代码/aiposp/mtools/heloo.txt");
+//		executor.execute(notify);
 	}
 }

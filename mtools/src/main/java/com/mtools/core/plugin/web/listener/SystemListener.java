@@ -1,6 +1,7 @@
 package com.mtools.core.plugin.web.listener;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
@@ -20,6 +21,7 @@ import com.mtools.core.plugin.helper.FuncUtil;
 public final class SystemListener implements HttpSessionListener, HttpSessionAttributeListener{
 	protected  final Log log = LogFactory.getLog(this.getClass());
 	private int count=0;
+	private int totalCount=0;
     /**
      * Default constructor. 
      */
@@ -31,8 +33,22 @@ public final class SystemListener implements HttpSessionListener, HttpSessionAtt
 	/**
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
-    public void sessionDestroyed(HttpSessionEvent arg0) {
+    @SuppressWarnings("unchecked")
+	public void sessionDestroyed(HttpSessionEvent arg0) {
     	log.info("****************sessionDestroyed********************");
+    	UserInfo user=(UserInfo) arg0.getSession().getAttribute(CoreConstans.LOGINGUSER);
+		List<UserInfo> onlineUser = null;
+		onlineUser = (List<UserInfo>) arg0.getSession().getServletContext().getAttribute(
+				CoreConstans.ONLINEUSERS);
+		if (onlineUser!=null&&onlineUser.contains(onlineUser)) {
+			onlineUser.remove(user);
+		} else {
+			log.debug("普通游客退线");
+		}
+		//访问人数减少
+		totalCount--;
+    	arg0.getSession().getServletContext().setAttribute(CoreConstans.ACESS_COUNT, totalCount);
+    	log.info("当前在线人数:"+totalCount);
     }
 
 	 
@@ -44,6 +60,9 @@ public final class SystemListener implements HttpSessionListener, HttpSessionAtt
     	Date date = new Date(lastaccess);
     	log.info("last access time :"+FuncUtil.formatTime(date, "yyyy年MM月dd日 HH时mm分ss秒 E "));
     	log.info("****************创建连接********************");
+    	totalCount++;
+    	arg0.getSession().getServletContext().setAttribute(CoreConstans.ACESS_COUNT, totalCount);
+    	log.info("当前在线人数:"+totalCount);
     }
 
 

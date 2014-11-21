@@ -22,7 +22,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.mtools.core.plugin.db.CoreDao;
 import com.mtools.core.plugin.helper.FuncUtil;
 import com.mtools.core.plugin.helper.SpringUtil;
-import com.mtools.core.plugin.staticres.StaticResPlugin;
+//import com.mtools.core.plugin.staticres.StaticResPlugin;
 
 public class InitServlet extends HttpServlet {
 
@@ -32,27 +32,34 @@ public class InitServlet extends HttpServlet {
 	private String log4j;
 	public void init() throws ServletException {
 
-		//自定义log4j配置
-		if(!FuncUtil.isEmpty(log4j)){
-			PropertyConfigurator.configure(SpringUtil.cfgPath(log4j));
-		}
-		log.info("初始化spring容器");
-		log.info("SpringUtil init");
-		ServletContext context = getServletContext();
+		try {
+			//自定义log4j配置
+			if(!FuncUtil.isEmpty(log4j)){
+				PropertyConfigurator.configure(SpringUtil.cfgPath(log4j));
+			}
+			log.info("初始化spring容器");
+			log.info("SpringUtil init");
+			ServletContext context = getServletContext();
 //		WebApplicationContext webAppContext = WebApplicationContextUtils
 //				.getWebApplicationContext(context);
-		ApplicationContext ctx = WebApplicationContextUtils
-				.getWebApplicationContext(context);
-		SpringUtil.initCxt(ctx);
-		CoreDao dao = (CoreDao) SpringUtil.getAnoBean("dao");
+			ApplicationContext ctx = WebApplicationContextUtils
+					.getWebApplicationContext(context);
+			SpringUtil.initCxt(ctx);
+			CoreDao dao = (CoreDao) SpringUtil.getAnoBean("dao");
+//		CoreDao daoExt = (CoreDao) SpringUtil.getAnoBean("daoExt");
 //		CoreDao daoExt = (CoreDao) SpringUtil.getBean("daoExt");
-		List<String> values = dao.search("select 1 from dual", String.class,
-				null);
+			List<String> values = dao.search("select 1 from dual", String.class,
+					null);
 //		values = daoExt.search("select 1 from dual", String.class,
 //				null);
-		//使用BouncyCastleProvider提供的安全策略 需要引入bcprov-jdk16-1.46.jar
-		Security.addProvider(new BouncyCastleProvider());
-		log.info("加载系统参数成功");
+			//使用BouncyCastleProvider提供的安全策略 需要引入bcprov-jdk16-1.46.jar
+			Security.addProvider(new BouncyCastleProvider());
+			
+			log.info("加载系统参数成功");
+		} catch (Exception e) {
+			log.error("初始化服务应用发生异常", e);
+			e.printStackTrace();
+		}
 	}
 	/**  
 	 * 功能：
