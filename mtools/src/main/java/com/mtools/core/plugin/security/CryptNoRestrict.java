@@ -9,6 +9,7 @@ import java.security.Provider;
 import java.security.Signature;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.security.interfaces.DSAPrivateKey;
 import java.security.interfaces.RSAPrivateCrtKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Enumeration;
@@ -69,6 +70,7 @@ public class CryptNoRestrict implements CryptInf
 		try
 		{
 			ks.load(fiKeyFile,PassWord.toCharArray());
+			
 		}
 		catch(Exception ex)
 		{
@@ -139,6 +141,7 @@ public class CryptNoRestrict implements CryptInf
 			throw ex;
 		}
 
+		 
 		RSAPublicKey pubkey = (RSAPublicKey) x509cert.getPublicKey();
 		Signature verify = Signature.getInstance("SHA1withRSA");
 		verify.initVerify(pubkey);

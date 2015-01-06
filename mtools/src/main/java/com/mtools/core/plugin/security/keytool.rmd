@@ -1,0 +1,74 @@
+本篇的主要内容为Java证书体系的实现。 
+
+在构建Java代码实现前，我们需要完成证书的制作。 
+1.生成keyStroe文件 
+在命令行下执行以下命令：
+
+keytool -genkey -validity 36000 -alias www.zlex.org -keyalg RSA -keystore d:\zlex.keystore
+
+
+
+其中 
+-genkey表示生成密钥 
+-validity指定证书有效期，这里是36000天 
+-alias指定别名，这里是www.zlex.org 
+-keyalg指定算法，这里是RSA 
+-keystore指定存储位置，这里是d:\zlex.keystore 
+
+在这里我使用的密码为 123456 
+
+控制台输出：
+
+输入keystore密码：
+再次输入新密码:
+您的名字与姓氏是什么？
+  [Unknown]：  www.zlex.org
+您的组织单位名称是什么？
+  [Unknown]：  zlex
+您的组织名称是什么？
+  [Unknown]：  zlex
+您所在的城市或区域名称是什么？
+  [Unknown]：  BJ
+您所在的州或省份名称是什么？
+  [Unknown]：  BJ
+该单位的两字母国家代码是什么
+  [Unknown]：  CN
+CN=www.zlex.org, OU=zlex, O=zlex, L=BJ, ST=BJ, C=CN 正确吗？
+  [否]：  Y
+
+输入<tomcat>的主密码
+        （如果和 keystore 密码相同，按回车）：
+再次输入新密码:
+
+
+这时，在D盘下会生成一个zlex.keystore的文件。 
+
+2.生成自签名证书 
+光有keyStore文件是不够的，还需要证书文件，证书才是直接提供给外界使用的公钥凭证。 
+导出证书：
+
+keytool -export -keystore d:\zlex.keystore -alias www.zlex.org -file d:\zlex.cer -rfc
+
+
+
+其中 
+-export指定为导出操作 
+-keystore指定keystore文件 
+-alias指定导出keystore文件中的别名 
+-file指向导出路径 
+-rfc以文本格式输出，也就是以BASE64编码输出 
+这里的密码是 123456 
+
+控制台输出：
+
+输入keystore密码：
+保存在文件中的认证 <d:\zlex.cer>
+
+
+
+当然，使用方是需要导入证书的！ 
+可以通过自签名证书完成CAS单点登录系统的构建！ 
+
+Ok，准备工作完成，开始Java实现！ 
+
+通过java代码实现如下：Coder类见

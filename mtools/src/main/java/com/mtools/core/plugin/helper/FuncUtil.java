@@ -935,6 +935,9 @@ public class FuncUtil {
 		}
 		response.setHeader("Content-Disposition", "attachment;filename="
 				+ filename);
+		if(filename.endsWith(".xls")){
+			response.setContentType("application/x-msdownload");
+		}
 		response.setContentLength(bytes.length);
 		ServletOutputStream ouputStream = response.getOutputStream();
 		ouputStream.write(bytes, 0, bytes.length);

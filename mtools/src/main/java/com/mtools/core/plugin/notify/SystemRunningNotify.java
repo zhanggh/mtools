@@ -73,6 +73,9 @@ public class SystemRunningNotify extends BasePlugin implements AsyncNotify{
  
 	public void run() {
 		try {
+			if(FuncUtil.isEmpty(mailType)){
+				mailType=CoreConstans.EXCEPTON_01;
+			}
 			String sql="select * from emailconfig e where e.apptype=?";
 			List<Emailconfig> econfigs=this.dao.search(sql, Emailconfig.class,mailType);
 			if(econfigs!=null&&econfigs.size()>0){

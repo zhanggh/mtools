@@ -18,7 +18,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mtools.core.plugin.BasePlugin;
 import com.mtools.core.plugin.constant.CoreConstans;
-import com.mtools.core.plugin.db.DBSqlUtil;
+import com.mtools.core.plugin.db.DBSqlCreater;
 import com.mtools.core.plugin.entity.MenuInfo;
 import com.mtools.core.plugin.entity.PageInfo;
 import com.mtools.core.plugin.entity.SqlParam;
@@ -111,24 +111,24 @@ public class MenuPlugin extends BasePlugin {
 	@Cacheable(value={"searchMenu"},key="#menu.menuid+''+#menu.menuname+'MenuPlugin.searchMenu'+#menutype+''+#page.pageIndex+''+#page.pageSize")
 	public List<MenuInfo> searchMenu(MenuInfo menu,
 			PageInfo page) throws Exception {
-		DBSqlUtil<MenuInfo> dbSqlUtil=new DBSqlUtil<MenuInfo>();
-		dbSqlUtil.addTableObj(menu);
+		DBSqlCreater<MenuInfo> dbSqlCreater=new DBSqlCreater<MenuInfo>();
+		dbSqlCreater.addTableObj(menu);
 		//增加条件
-		dbSqlUtil.addLiketField("menuname");
+		dbSqlCreater.addLiketField("menuname");
 		if (!FuncUtil.isEmpty(page.getSort().getId())) {
-			dbSqlUtil.setOrderbyField("menuid", page.getSort().getId());
+			dbSqlCreater.setOrderbyField("menuid", page.getSort().getId());
 		}
 		if (!FuncUtil.isEmpty(page.getSort().getName())) {
-			dbSqlUtil.setOrderbyField("menuname", page.getSort().getName());
+			dbSqlCreater.setOrderbyField("menuname", page.getSort().getName());
 		}
 		//构建where语句
-		SqlParam sqlParam = dbSqlUtil.buildWhereSql(menu);
+		SqlParam sqlParam = dbSqlCreater.buildWhereSql(menu);
 		
 		// 总笔数
-		int count = this.dao.count(dbSqlUtil.buildCountSql()+sqlParam.getSql(),sqlParam.getParams().toArray());
+		int count = this.dao.count(dbSqlCreater.buildCountSql()+sqlParam.getSql(),sqlParam.getParams().toArray());
 		page.setItemCount(count);
 		
-		List<MenuInfo> menus = this.dao.searchPage(dbSqlUtil.buildSelect()+sqlParam.getSql(), MenuInfo.class,
+		List<MenuInfo> menus = this.dao.searchPage(dbSqlCreater.buildSelect()+sqlParam.getSql(), MenuInfo.class,
 				Integer.parseInt(page.getPageIndex()),
 				Integer.parseInt(page.getPageSize()),sqlParam.getParams().toArray());
 		if (menus == null)

@@ -774,4 +774,19 @@ public class DBUtil
 			}
 		}
 	}
+	
+	/**
+	 * 别名.字段
+	 * @param fieldName
+	 * @return
+	 * @throws AIPGException
+	 */
+	public static String getTableCln(Class clz,String fieldName) throws AIPGException{
+		if(clz!=null){
+			return DBUtil.getTableAlis(clz)+"."+fieldName;
+		}else{
+			return fieldName;
+		}
+		
+	}
 }

@@ -13,7 +13,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mtools.core.plugin.db.CoreDao;
-import com.mtools.core.plugin.db.DBSqlUtil;
+import com.mtools.core.plugin.db.DBSqlCreater;
 import com.mtools.core.plugin.mail.MailImpl;
 import com.mtools.core.plugin.properties.CoreParams;
 
@@ -38,8 +38,8 @@ public class BasePlugin {
 	@Resource(name = "coreParams")
 	public CoreParams coreParams;
 	
-//	@Resource(name = "dbSqlUtil")
-//	public DBSqlUtil dbSqlUtil;
+//	@Resource(name = "dbSqlCreater")
+//	public DBSqlUtil dbSqlCreater;
 	
 	public Long getSeq(String seqName){
 		return this.dao.getSeq(seqName);

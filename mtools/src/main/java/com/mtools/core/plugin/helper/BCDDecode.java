@@ -14,6 +14,7 @@ public class BCDDecode {
 	 */
 	public static void main(String[] args) {
 		byte[] b = str2Bcd("2010");
+		byte[] a = "2010".getBytes();
 		System.out.println(bcd2Str(b));
 	}
 

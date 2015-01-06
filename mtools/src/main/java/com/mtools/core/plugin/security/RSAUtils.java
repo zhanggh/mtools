@@ -25,6 +25,7 @@ public final class RSAUtils
 {
   private static final Provider provider = new BouncyCastleProvider();
   private static final int size = 2048;
+  private static String seed = "12345678";
 
   public static KeyPair generateKeyPair()
   {
@@ -32,7 +33,7 @@ public final class RSAUtils
     try
     {
       KeyPairGenerator localKeyPairGenerator = KeyPairGenerator.getInstance("RSA", provider);
-      localKeyPairGenerator.initialize(size, new SecureRandom("12345678".getBytes()));
+      localKeyPairGenerator.initialize(size, new SecureRandom(seed.getBytes()));
       long end = System.currentTimeMillis();
       
       System.out.println("产生密钥对耗时："+(end-start));
@@ -127,7 +128,7 @@ public final class RSAUtils
   }
   
   public static void main(String[] args) throws Exception{
-	  
+	  RSAUtils.seed="111111345213524";
 	  KeyPair  kpair = RSAUtils.generateKeyPair();
 	  long start = System.currentTimeMillis();
 	 String orgStr="zhanggh";

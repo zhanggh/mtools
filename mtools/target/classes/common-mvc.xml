@@ -76,7 +76,7 @@
 
 	<bean id="jspResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/WEB-INF/views/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- 如果打开该映射器，那么将无法把拦截器里面的异常往过滤器抛出 -->

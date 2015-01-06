@@ -46,8 +46,9 @@
 <!-- 	 <bean id="comTask" class="com.mtools.core.plugin.task.ComTaskPlugin"/>   -->
 <!-- 定时任务配置 -->
 	<task:annotation-driven scheduler="taskScheduler"/>
-    <task:scheduler id="taskScheduler" pool-size="42"/>
-<!-- 	 <task:scheduled-tasks>   -->
-<!-- 	    <task:scheduled ref="comTask" method="singing" cron="*/3 * * * * ?"/> -->
-<!-- 	 </task:scheduled-tasks> -->
+    <task:scheduler id="taskScheduler" pool-size="5"/>
+    <task:scheduled-tasks>   
+	  <!--   <task:scheduled ref="tranSvTask" method="doSomething" cron="0 5 * * * ?"/> -->
+	    <task:scheduled ref="comTask" method="perDayMonitor" cron="0 0 0 * * ?"/>
+	 </task:scheduled-tasks>  
 </beans>
