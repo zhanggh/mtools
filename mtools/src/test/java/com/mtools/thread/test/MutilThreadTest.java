@@ -1,5 +1,9 @@
 package com.mtools.thread.test;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MutilThreadTest {
 
 	public static Developer dev;
@@ -8,6 +12,8 @@ public class MutilThreadTest {
 	 */
 	public static void main(String[] args) {
 		dev=new Developer();
+		
+		ExecutorService exc=Executors.newFixedThreadPool(10);
 		
 		MutilThreadTest mut=new MutilThreadTest();
 		new Thread(mut.new ThreadA()).start();

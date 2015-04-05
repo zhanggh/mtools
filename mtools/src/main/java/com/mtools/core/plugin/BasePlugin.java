@@ -38,10 +38,7 @@ public class BasePlugin {
 	@Resource(name = "coreParams")
 	public CoreParams coreParams;
 	
-//	@Resource(name = "dbSqlCreater")
-//	public DBSqlUtil dbSqlCreater;
-	
-	public Long getSeq(String seqName){
+ 	public Long getSeq(String seqName){
 		return this.dao.getSeq(seqName);
 	}
 
@@ -66,12 +63,5 @@ public class BasePlugin {
 		if(log==null)
 			log=LogFactory.getLog(this.getClass());
 	}
-
-//	public DBSqlUtil getDbSqlUtil() {
-//		return dbSqlUtil;
-//	}
-//
-//	public void setDbSqlUtil(DBSqlUtil dbSqlUtil) {
-//		this.dbSqlUtil = dbSqlUtil;
-//	}
+ 
 }

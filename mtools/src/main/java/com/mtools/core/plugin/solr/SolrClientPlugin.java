@@ -34,7 +34,7 @@ import com.mtools.core.plugin.properties.CoreParams;
 @Component("solrClientPlugin")
 public class SolrClientPlugin<T> extends BasePlugin {
 
-	private String solrUrl = "http://172.16.1.11:8983/solr";
+//	private String solrUrl = "http://172.16.1.12:8983/solr";
 	private HttpSolrServer server = null;
 
 	public void initSolr() {

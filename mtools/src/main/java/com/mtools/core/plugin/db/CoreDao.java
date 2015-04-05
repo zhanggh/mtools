@@ -1,11 +1,9 @@
 package com.mtools.core.plugin.db;
  
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
-import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +14,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.mtools.core.plugin.helper.SpringUtil;
 import com.mtools.core.plugin.notify.AsyncNotify;
+import com.mtools.core.plugin.service.MTSystemService;
 
 //
 @SuppressWarnings("unchecked")
@@ -24,9 +23,7 @@ import com.mtools.core.plugin.notify.AsyncNotify;
 public class CoreDao {
 
 	static Log log=LogFactory.getLog(CoreDao.class);
-	@Resource(name="sysRunningNotify")
 	private AsyncNotify notify;
-	@Resource(name = "taskExecutor")
 	public Executor executor;
 	
 	public CoreDao() {
@@ -64,6 +61,9 @@ public class CoreDao {
 			return DBUtil.getList(dbop, sql, clz, args);
 		} catch (Exception e) {
 			 if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 }
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -77,6 +77,9 @@ public class CoreDao {
 			return DBUtil.search(this.isOrcl,true, dbop, DBUtil.getTableNameEx(clz), start, size, flag, startObj, endObj, clz, ranges);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 }
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -90,6 +93,9 @@ public class CoreDao {
 			return DBUtil.count(true, dbop, DBUtil.getTableNameEx(clz), flag, startObj, endObj, clz, ranges);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -103,6 +109,9 @@ public class CoreDao {
 			return DBUtil.getPage(this.isOrcl,dbop, sql, clz, (start-1)*size, size, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -117,6 +126,9 @@ public class CoreDao {
 			return DBUtil.getListForArray(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -130,6 +142,9 @@ public class CoreDao {
 			return DBUtil.getListForArrayPage(this.isOrcl,dbop, sql,start,size, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -143,6 +158,9 @@ public class CoreDao {
 			return DBUtil.getListForMap(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -156,6 +174,9 @@ public class CoreDao {
 			return DBUtil.getListForMapPage(this.isOrcl,dbop, sql,start,size, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -169,6 +190,9 @@ public class CoreDao {
 			return DBUtil.count(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -182,6 +206,9 @@ public class CoreDao {
 			return DBUtil.getObj(dbop, sql, clz, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -195,6 +222,9 @@ public class CoreDao {
 			return DBUtil.getSimpleObj(dbop, sql, clz, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -220,6 +250,9 @@ public class CoreDao {
 				return 0;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -233,6 +266,9 @@ public class CoreDao {
 			return DBUtil.updateEx(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -250,6 +286,9 @@ public class CoreDao {
 				return null;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -271,6 +310,9 @@ public class CoreDao {
 				return null;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 }
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -288,6 +330,9 @@ public class CoreDao {
 				return 0;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -305,6 +350,9 @@ public class CoreDao {
 				return 0;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 }
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -318,6 +366,9 @@ public class CoreDao {
 			return DBUtil.updateBatch(dbop,sql, params);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -331,6 +382,9 @@ public class CoreDao {
 			return DBUtil.update(dbop, sql, args, retCols);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 }
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -344,6 +398,9 @@ public class CoreDao {
 			return DBUtil.updateEx(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -357,6 +414,9 @@ public class CoreDao {
 			return DBUtil.delete(dbop, sql, args);
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -374,6 +434,9 @@ public class CoreDao {
 				return 0;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -392,6 +455,9 @@ public class CoreDao {
 				return null;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -410,6 +476,9 @@ public class CoreDao {
 				return null;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -428,6 +497,9 @@ public class CoreDao {
 				return null;
 		} catch (Exception e) {
 			if(e instanceof DataAccessException||e instanceof CannotGetJdbcConnectionException){
+				 if(notify==null){
+					 notify=MTSystemService.getInstance().getNotifyService();
+				 } 
 				 notify.initData(null, e,SpringUtil.getApplicationContext().getApplicationName());
 				 executor.execute(notify);
 			 }
@@ -435,4 +507,22 @@ public class CoreDao {
 			throw e;
 		}
 	}
+
+	public AsyncNotify getNotify() {
+		return notify;
+	}
+
+	public void setNotify(AsyncNotify notify) {
+		this.notify = notify;
+	}
+
+	public Executor getExecutor() {
+		return executor;
+	}
+
+	public void setExecutor(Executor executor) {
+		this.executor = executor;
+	}
+	
+	
 }

@@ -291,6 +291,9 @@ public class FuncUtil {
 	}
 
 	public static BigDecimal ftoy(String num) {
+		if(FuncUtil.isEmpty(num)){
+			num="0";
+		}
 		return ftoy(new BigDecimal(num));
 	}
 
