@@ -105,11 +105,11 @@ solr搜索客户端插件，用于建立solr索引，全文查询
 29、com.mtools.core.plugin.netty.client
 高性能异步请求netty客户端
 30、com.mtools.core.plugin.netty.server
-高性能异步请求netty服务端
-31、com.mtools.core.plugin.rmi
-java rmi通讯工具
-32、com.mtools.core.plugin.jms.activemq、com.mtools.core.plugin.jms.listener
-java消息服务工具，用于发送jms，监听消息等
+高性能异步请求netty服务端<br/>
+31、com.mtools.core.plugin.rmi<br/>
+java rmi通讯工具<br/>
+32、com.mtools.core.plugin.jms.activemq、com.mtools.core.plugin.jms.listener<br/>
+java消息服务工具，用于发送jms，监听消息等<br/>
 
 二、下列配置文件的用处
 1、common-mvc.xml
